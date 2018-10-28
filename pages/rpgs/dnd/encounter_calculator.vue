@@ -2,7 +2,7 @@
   <div id="encounter-calculator">
     <b-jumbotron text-variant="white"
                  fluid
-                 header="YAEC" 
+                 header="YAEC"
                  lead="Yet Another Encounter Calculator for Dungeons and Dragons 5th edition"/>
 
     <encounter-calculator/>
@@ -23,7 +23,7 @@
       </p>
       <p>
         Below the whole thing is a progress bar that illustrates the relative difficulty between
-        <span class="tag is-info">trivial</span> and <span class="tag is-black">deadly</span> encounter
+        <b-badge variant="info">trivial</b-badge> and <b-badge variant="dark">deadly</b-badge> encounter
         thresholds for the party.
       </p>
 
@@ -46,14 +46,25 @@ import EncounterCalculator from '~/components/DndEncounterCalculator'
 export default {
   components: {
     EncounterCalculator
+  },
+  head: {
+    title: 'Encounter Calculator for D&D 5th edition',
+    meta: [
+      {
+        name: 'description',
+        content: 'An encounter calculator for Dungeons and Dragons 5th edition'
+      }
+    ]
   }
 }
 </script>
 
-<style scoped>
-.jumbotron {
-  background-position: center;
-  background-size: cover;
-  background-image: url('/dnd_header.jpg');
-}
+<style scoped lang="sass">
+  .jumbotron
+    background-position: center
+    background-size: cover
+    background-image: url('/dnd_header.jpg')
+
+    &.text-white
+      text-shadow: 1px 1px 2px black
 </style>

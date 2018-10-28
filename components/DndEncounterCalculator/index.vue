@@ -53,13 +53,13 @@
               </b-form-group>
             </b-col>
             <b-col>
-              <b-form-group v-if="index == 0" lable="Add">
+              <b-form-group v-if="i == 0" label="Add">
                 <b-button variant="primary" @click="monsters.push({number: 1, xp: 25})">
                   <span class="fas fa-plus"/>
                 </b-button>
               </b-form-group>
-              <b-form-group v-if="index > 0 && monsters.length > 1" lable="Del">
-                <b-button variant="danger" @click="monsters.splice(index, 1)">
+              <b-form-group v-if="i > 0 && monsters.length > 1" label="Del">
+                <b-button variant="danger" @click="monsters.splice(i, 1)">
                   <span class="fas fa-trash"/>
                 </b-button>
               </b-form-group>
