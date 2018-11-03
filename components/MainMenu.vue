@@ -19,6 +19,8 @@
         <b-nav-item-dropdown text="Starfinder">
           <b-dropdown-item :to="{name: 'rpgs-starfinder-encounter_calculator'}">YASEC</b-dropdown-item>
         </b-nav-item-dropdown>
+
+        <b-nav-item :to="{name: 'rpgs-mythic'}">Mythic RPG FATE</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
