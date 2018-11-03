@@ -1,5 +1,5 @@
 <template lang="html">
-  <span :class="{'has-text-success': isCorrect, 'has-text-danger': !isCorrect}">
+  <span :class="{'text-success': isCorrect, 'text-danger': !isCorrect}">
     <span :class="{'fa-thumbs-up': isCorrect, 'fa-thumbs-down': !isCorrect}" class="fas fa-10x"/>
   </span>
 </template>

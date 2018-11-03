@@ -1,15 +1,17 @@
 <template>
   <section id="config">
+    <h1>Configuration</h1>
+
     <b-form-group label="Minimum" horizontal>
-      <b-input :value="config.numberMin" type="number" @input="$store.commit('math/setConfig', {field: 'numberMin', value: $event})"/>
+      <b-input :value="config.numberMin" type="number" @input="$store.commit('math/setConfig', {field: 'numberMin', value: parseInt($event)})"/>
     </b-form-group>
 
     <b-form-group label="Maximum" horizontal>
-      <b-input :value="config.numberMax" type="number" @input="$store.commit('math/setConfig', {field: 'numberMax', value: $event})"/>
+      <b-input :value="config.numberMax" type="number" @input="$store.commit('math/setConfig', {field: 'numberMax', value: parseInt($event)})"/>
     </b-form-group>
 
     <b-form-group label="Forced number" horizontal>
-      <b-input :value="config.forcedNumber" type="number" @input="$store.commit('math/setConfig', {field: 'forcedNumber', value: $event})"/>
+      <b-input :value="config.forcedNumber" type="number" @input="$store.commit('math/setConfig', {field: 'forcedNumber', value: parseInt($event)})"/>
     </b-form-group>
 
     <b-form-group label="Use total for limit" horizontal>

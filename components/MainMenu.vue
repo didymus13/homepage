@@ -8,8 +8,8 @@
     <b-collapse id="nav_collapse" is-nav>
 
       <b-navbar-nav>
-        <b-nav-item-dropdown text="Kids" disabled>
-          <b-dropdown-item href="#">Math Practice</b-dropdown-item>
+        <b-nav-item-dropdown text="Kids">
+          <b-dropdown-item :to="{name: 'kids-math-addition'}">Math Practice</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown text="D&D 5th">
