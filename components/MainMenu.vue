@@ -16,8 +16,8 @@
           <b-dropdown-item :to="{name: 'rpgs-dnd-encounter_calculator'}">YAEC</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item-dropdown text="Starfinder" disabled>
-          <b-dropdown-item href="#">YASEC</b-dropdown-item>
+        <b-nav-item-dropdown text="Starfinder">
+          <b-dropdown-item :to="{name: 'rpgs-starfinder-encounter_calculator'}">YASEC</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
