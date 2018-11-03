@@ -12,12 +12,9 @@
           <b-dropdown-item :to="{name: 'kids-math-addition'}">Math Practice</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item-dropdown text="D&D 5th">
-          <b-dropdown-item :to="{name: 'rpgs-dnd-encounter_calculator'}">YAEC</b-dropdown-item>
-        </b-nav-item-dropdown>
-
-        <b-nav-item-dropdown text="Starfinder">
-          <b-dropdown-item :to="{name: 'rpgs-starfinder-encounter_calculator'}">YASEC</b-dropdown-item>
+        <b-nav-item-dropdown text="RPG Encounter Calculators">
+          <b-dropdown-item :to="{name: 'rpgs-dnd-encounter_calculator'}">D&D 5th</b-dropdown-item>
+          <b-dropdown-item :to="{name: 'rpgs-starfinder-encounter_calculator'}">Starfinder</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item :to="{name: 'rpgs-mythic'}">Mythic RPG FATE</b-nav-item>
