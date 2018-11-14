@@ -4,21 +4,13 @@
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         {{ problem.number1 }} + {{ problem.number2 }} =
-      </div>
-      <div class="field-body">
-        <div class="field has-addons">
-          <p class="control">
-            <input id="answer"
-                   v-model="answer"
-                   type="number"
-                   name="answer"
-                   class="input"
-                   @keyup.enter="verify">
-          </p>
-          <p class="control">
-            <b-button variant="primary" @click="verify">Answer</b-button>
-          </p>
-        </div>
+        <input id="answer"
+               v-model="answer"
+               type="number"
+               name="answer"
+               class="input"
+               @keyup.enter="verify">
+        <b-button variant="primary" @click="verify">Answer</b-button>
       </div>
     </div>
     <div class="clearfix"/>

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <b-jumbotron fluid header="Math practice"/>
+    <b-jumbotron text-variant="light"
+                 fluid
+                 header="Math practice"
+                 class="bg-image"
+                 style="background-image: url('/math.jpeg')"/>
 
     <b-nav justified>
       <b-nav-item><nuxt-link :to="{name: 'kids-math-addition'}">Addition</nuxt-link></b-nav-item>
@@ -15,3 +19,9 @@
     </b-container>
   </div>
 </template>
+
+<style lang="sass">
+  .bg-image
+    background-position: center
+    background-size: cover
+</style>
