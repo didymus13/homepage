@@ -20,8 +20,11 @@
   </div>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
   .bg-image
     background-position: center
     background-size: cover
+
+  .display-3
+    text-shadow: 2px 2px 4px black
 </style>
