@@ -10,7 +10,7 @@ export const state = () => ({
     number2: 0
   },
   config: {
-    numberMin: 0,
+    numberMin: 1,
     numberMax: 12,
     forcedNumber: null,
     useTotalForLimit: true,
