@@ -36,38 +36,13 @@
 
           <h3 class="mb-4">Things that I've worked on:</h3>
           <b-row class="mb-4">
-            <b-col cols="6">
-              <b-card title="PPN Source" class="mb-4">
-                <p class="card-text">
-                  Distributor of digital content for events for media, organizations or individuals from around the
-                  world.
-                </p>
-                <p class="card-text"><strong>Role:</strong> Lead developer</p>
-                <b-button href="https://www.ppnsource.com" variant="primary">Check it out!</b-button>
+            <b-col sm="12" md="6" v-for="item in portfolio">
+              <b-card :title="item.title" class="mb-4">
+                <p class="card-text">{{ item.content }}</p>
+                <p class="card-text"><strong>Role:</strong> {{ item.role }}</p>
+                <b-button :href="item.url" variant="primary">Check it out!</b-button>
               </b-card>
             </b-col>
-            <b-col cols="6">
-              <b-card title="GetLeadkit.com">
-                <p class="card-text">Real Estate Technology & Lead Generation for the Modern Agent</p>
-                <p class="card-text"><strong>Role:</strong> Lead backend developer</p>
-                <b-button href="https://www.getleadkit.com" variant="primary">Check it out!</b-button>
-              </b-card>
-            </b-col>
-            <b-col cols="6">
-              <b-card title="WeFundRaising.com">
-                <p class="card-text">The revolution in crowd-funding.</p>
-                <p class="card-text"><strong>Role:</strong> Lead developer</p>
-                <b-button href="http://www.wefundraising.com" variant="primary">Check it out!</b-button>
-              </b-card>
-            </b-col>
-            <b-col cols="6">
-              <b-card title="AskMen.com">
-                <p class="card-text">Experts in Men's Lifestyle For Over 18 Years.</p>
-                <p class="card-text"><strong>Role:</strong> Web developer</p>
-                <b-button href="https://www.askmen.com" variant="primary">Check it out!</b-button>
-              </b-card>
-            </b-col>
-          </b-row>
 
           <!-- <h3>What's going on?</h3> -->
         </b-col>
@@ -105,6 +80,36 @@ export default {
         content: 'https://www.stephanedoiron.com/homepage-bg.jpg'
       }
     ]
+  },
+  data() {
+    return {
+      portfolio: [
+        {
+          title: 'PPN Source',
+          content: 'Distributor of digital content for events for media, organizations or individuals from around the world.',
+          role: 'Lead developer',
+          url: 'https://www.ppnsource.com/'
+        },
+        {
+          title: 'GetLeadkit.com',
+          content: 'Real Estate Technology & Lead Generation for the Modern Agent.',
+          role: 'Lead backend developer',
+          url: 'https://www.getleadkit.com/'
+        },
+        {
+          title: 'WeFundRaising.com',
+          content: 'The revolution in crowd-funding.',
+          role: 'Lead developer',
+          url: 'http://www.wefundraising.com/'
+        },
+        {
+          title: 'AskMen.com',
+          content: "Experts in Men's Lifestyle For Over 18 Years.",
+          role: 'Web developer',
+          url: 'https://www.askmen.com/'
+        },
+      ]
+    }
   }
 }
 </script>
