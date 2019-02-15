@@ -21,11 +21,9 @@
         <!-- Skills -->
         <b-col cols="12" sm="4" md="3" lg="2">
           <h3>Skills:</h3>
-          <b-progress :value="90" variant="dark" show-progress/> API / REST / JSON
-          <b-progress :value="85" variant="dark" show-progress/> PHP / Laravel
-          <b-progress :value="85" variant="dark" show-progress/> MySQL
-          <b-progress :value="85" variant="dark" show-progress/> Git
-          <b-progress :value="75" variant="dark" show-progress/> VueJS
+          <div v-for="skill in skills" class="mb-2">
+            <b-progress :value="skill.percent" variant="dark" show-progress /> {{ skill.label }}
+          </div>
         </b-col>
 
         <!-- Blurb -->
@@ -108,6 +106,14 @@ export default {
           role: 'Web developer',
           url: 'https://www.askmen.com/'
         },
+      ],
+      skills: [
+        { label: 'API / REST / JSON', percent: 90 },
+        { label: 'PHP / Laravel', percent: 85 },
+        { label: 'MySQL', percent: 85 },
+        { label: 'Git', percent: 85 },
+        { label: 'PostgreSQL', percent: 80 },
+        { label: 'VueJS', percent: 75 }
       ]
     }
   }
