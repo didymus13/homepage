@@ -41,7 +41,7 @@
                 <b-button :href="item.url" variant="primary">Check it out!</b-button>
               </b-card>
             </b-col>
-
+          </b-row>
           <!-- <h3>What's going on?</h3> -->
         </b-col>
       </b-row>
