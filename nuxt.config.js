@@ -27,6 +27,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'pretty-checkbox/dist/pretty-checkbox.min.css',
+    '@/assets/main.scss'
   ],
 
   /*
