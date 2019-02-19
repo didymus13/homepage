@@ -34,7 +34,7 @@
 
           <h3 class="mb-4">Things that I've worked on:</h3>
           <b-row class="mb-4">
-            <b-col sm="12" md="6" v-for="item in portfolio">
+            <b-col sm="12" md="6" v-for="item,i in portfolio" :key="i">
               <b-card :title="item.title" class="mb-4">
                 <p class="card-text">{{ item.content }}</p>
                 <p class="card-text"><strong>Role:</strong> {{ item.role }}</p>
