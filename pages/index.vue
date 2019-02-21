@@ -29,10 +29,10 @@
         <!-- Blurb -->
         <b-col>
           <blockquote class="mb-4">
-            Based in the Montreal, Canada area. Crafts web applications for E-Commerce, Media, and Advertising.
+            Based in Montreal, Canada, and working in web development since 1998, Stéphane Doiron has worked with companies of varying scopes and portfolios, from small static page websites to large websites with multi-million monthly views. Specialized in backend development and APIs, he helps websites be more responsive and adaptable to today’s changing market realities.
           </blockquote>
 
-          <h3 class="mb-4">Things that I've worked on:</h3>
+          <h3 class="mb-4">His code contributions can be found in such sites as:</h3>
           <b-row class="mb-4">
             <b-col sm="12" md="6" v-for="item,i in portfolio" :key="i">
               <b-card :title="item.title" class="mb-4">
@@ -60,7 +60,7 @@ export default {
     meta: [
       {
         name: 'description',
-        content: 'PHP Developer with 20 years experience'
+        content: 'PHP Developer with 20 years of experience'
       },
       {
         name: 'keywords',
@@ -94,17 +94,23 @@ export default {
           role: 'Lead backend developer',
           url: 'https://www.getleadkit.com/'
         },
-        {
-          title: 'WeFundRaising.com',
-          content: 'The revolution in crowd-funding.',
-          role: 'Lead developer',
-          url: 'http://www.wefundraising.com/'
-        },
+        // {
+        //   title: 'WeFundRaising.com',
+        //   content: 'The revolution in crowd-funding.',
+        //   role: 'Lead developer',
+        //   url: 'http://www.wefundraising.com/'
+        // },
         {
           title: 'AskMen.com',
           content: "Experts in Men's Lifestyle For Over 18 Years.",
           role: 'Web developer',
           url: 'https://www.askmen.com/'
+        },
+        {
+          title: 'TRC.ca',
+          content: "Truth and Reconciliation commission of Canada",
+          role: 'Web developer',
+          url: 'http://www.trc.ca/'
         },
       ],
       skills: [
