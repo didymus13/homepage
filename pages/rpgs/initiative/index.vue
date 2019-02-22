@@ -106,7 +106,7 @@ export default {
 }
 
 .bg-image {
-  background-image: url('/initTrackerhero.jpg')
+  background-image: url('/initTrackerHero.jpg')
 }
 
 .display-3 {
