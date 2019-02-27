@@ -122,6 +122,12 @@ export default {
         { label: 'VueJS', percent: 75 }
       ]
     }
+  },
+
+  computed: {
+    env() {
+      return process.env
+    }
   }
 }
 </script>
