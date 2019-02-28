@@ -3,7 +3,9 @@ require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
-  env: process.env,
+  env: {
+    TRELLO_API: 'NUXT_ENV_TRELLO_API'
+  },
   
   /*
   ** Headers of the page
