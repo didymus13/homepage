@@ -17,15 +17,15 @@
     "bootstrap-vue": "^2.0.0-rc.13",
     "cross-env": "^5.2.0",
     "moment": "^2.24.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.4.5",
     "pretty-checkbox-vue": "^1.1.9",
     "vue": "^2.6.7",
-    "vue-i18n": "^8.2.1",
-    "vuex": "^3.0.1"
+    "vue-i18n": "^8.8.2",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "node-sass": "^4.11.0",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.18.10",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0"
