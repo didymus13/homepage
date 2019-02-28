@@ -3,7 +3,8 @@ require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
-
+  env: process.env,
+  
   /*
   ** Headers of the page
   */
