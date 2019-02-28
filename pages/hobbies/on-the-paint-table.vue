@@ -29,10 +29,10 @@ import _ from 'lodash'
 import moment from 'moment'
 
 export default {
-  async asyncData( {$axios, env, app} ) {
-    let params = { key: env.TRELLO_KEY, token: env.TRELLO_TOKEN }
-    let paintingReq = $axios.$get(`${env.TRELLO_API}/lists/${env.TRELLO_LISTS_PAINTING}/cards`)
-    let finishedReq = $axios.$get(`${env.TRELLO_API}/lists/${env.TRELLO_LISTS_FINISHED}/cards`)
+  async asyncData( {$axios, app} ) {
+    let params = { key: process.env.TRELLO_KEY, token: process.env.TRELLO_TOKEN }
+    let paintingReq = $axios.$get(`${process.env.TRELLO_API}/lists/${process.env.TRELLO_LISTS_PAINTING}/cards`)
+    let finishedReq = $axios.$get(`${process.env.TRELLO_API}/lists/${process.env.TRELLO_LISTS_FINISHED}/cards`)
     const [paintingRes, finishedRes] = await Promise.all([paintingReq, finishedReq])
     return {
       paintingList: paintingRes,
