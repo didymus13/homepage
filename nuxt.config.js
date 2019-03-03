@@ -1,5 +1,5 @@
 const pkg = require('./package')
-// require('dotenv').config()
+require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
