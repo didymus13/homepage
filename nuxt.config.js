@@ -71,6 +71,7 @@ module.exports = {
   },
 
   generate: {
+    subFolders: false,
     routes: [
       '/hobbies/on-the-paint-table'
     ]
