@@ -16,7 +16,7 @@
           <b-form-input name="color"></b-form-input>
         </b-form-group>
 
-        <b-button variant="primary">Answer me these questions three</b-button>
+        <b-button type="submit" variant="primary">Answer me these questions three</b-button>
       </form>
     </b-container>
   </div>
