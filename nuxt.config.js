@@ -68,12 +68,5 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-  },
-
-  generate: {
-    subFolders: false,
-    routes: [
-      '/hobbies/on-the-paint-table'
-    ]
   }
 }
