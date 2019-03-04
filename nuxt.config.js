@@ -4,6 +4,14 @@ require('dotenv').config()
 module.exports = {
   mode: 'universal',
 
+  env: {
+    TRELLO_API: process.env.TRELLO_API,
+    TRELLO_KEY: process.env.TRELLO_KEY,
+    TRELLO_TOKEN: process.env.TRELLO_TOKEN,
+    TRELLO_LISTS_PAINTING: process.env.TRELLO_LISTS_PAINTING,
+    TRELLO_LISTS_FINISHED: process.env.TRELLO_LISTS_FINISHED
+  },
+  
   /*
   ** Headers of the page
   */

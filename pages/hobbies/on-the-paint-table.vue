@@ -30,7 +30,7 @@ import moment from 'moment'
 
 export default {
   async asyncData( {$axios, env, app} ) {
-    env = env || process.env
+    
     let paintingReq = $axios.$get(`${env.TRELLO_API}/lists/${env.TRELLO_LISTS_PAINTING}/cards`)
     let finishedReq = $axios.$get(`${env.TRELLO_API}/lists/${env.TRELLO_LISTS_FINISHED}/cards`)
     const [paintingRes, finishedRes] = await Promise.all([paintingReq, finishedReq])
