@@ -14,7 +14,7 @@
       <b-input :value="config.forcedNumber" type="number" @input="$store.commit('math/setConfig', {field: 'forcedNumber', value: parseInt($event)})"/>
     </b-form-group>
 
-    <b-form-group label="Use total for limit" label-cols-sm="3">
+    <!-- <b-form-group label="Use total for limit" label-cols-sm="3">
       <b-form-radio-group
         :checked="config.useTotalForLimit"
         :options="options"
@@ -35,8 +35,8 @@
         :checked="config.positiveAnswersOnly"
         :options="options"
         @change="$store.commit('math/setConfig', {field: 'positiveAnswersOnly', value: $event})">
-      </b-form-radio-group> 
-    </b-form-group>
+      </b-form-radio-group>
+    </b-form-group> -->
   </section>
 </template>
 
