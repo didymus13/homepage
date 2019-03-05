@@ -12,7 +12,9 @@
       <a href="https://twitter.com/sirdidymus" class="text-light">
         <span class="fab fa-fw fa-twitter fa-2x"/>
       </a>
-      <!-- <nuxt-link :to="{ name: 'contact' }" class="text-light"><span class="fas fa-fw fa-envelope fa-2x"/></nuxt-link> -->
+      <a href="/contact" class="text-light">
+        <span class="fas fa-fw fa-envelope fa-2x"/>
+      </a>
     </b-jumbotron>
 
     <b-container>
