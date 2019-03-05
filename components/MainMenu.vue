@@ -23,7 +23,7 @@
       </b-navbar-nav>
 
 
-      <!-- Right aligned nav items --> -->
+      <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item to="https://www.github.com/didymus13"><span class="fab fa-fw fa-github"/></b-nav-item>
         <b-nav-item to="https://www.linkedin.com/in/stephane-doiron-88716932/"><span class="fab fa-fw fa-linkedin"/></b-nav-item>
