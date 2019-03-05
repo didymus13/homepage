@@ -22,14 +22,14 @@
         <b-nav-item :to="{name: 'hobbies-on-the-paint-table'}">On the paint table</b-nav-item>
       </b-navbar-nav>
 
-      <!-- Right aligned nav items -->
-      <!-- <b-navbar-nav class="ml-auto">
 
-        <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">FR</b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-navbar-nav> -->
+      <!-- Right aligned nav items --> -->
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item to="https://www.github.com/didymus13"><span class="fab fa-fw fa-github"/></b-nav-item>
+        <b-nav-item to="https://www.linkedin.com/in/stephane-doiron-88716932/"><span class="fab fa-fw fa-linkedin"/></b-nav-item>
+        <b-nav-item to="https://twitter.com/sirdidymus"><span class="fab fa-fw fa-twitter"/></b-nav-item>
+        <b-nav-item :to="{ name: 'contact' }"><span class="fas fa-fw fa-envelope"/></b-nav-item>
+      </b-navbar-nav>
 
     </b-collapse>
   </b-navbar>

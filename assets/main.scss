@@ -1,4 +1,7 @@
 .bg-image {
   background-size: cover;
   background-position: center;
+  > .container {
+    text-shadow: 1px 1px black;
+  }
 }
