@@ -29,7 +29,7 @@
         <!-- Blurb -->
         <b-col>
           <blockquote class="mb-4">
-            Based in Montreal, Canada, and working in web development since 1998, Stéphane Doiron has worked with companies of varying scopes and portfolios, from small static page websites to large websites with multi-million monthly views. Specialized in backend development and APIs, he helps websites be more responsive and adaptable to today’s changing market realities.
+            Based in Montreal, Canada, and working in web development since 1998, Stéphane Doiron has worked with companies of varying scopes and portfolios, from small static page websites to large websites with multi-million monthly views. Specialized in backend development and APIs, he helps websites become more responsive and adaptable to today’s changing market realities.
           </blockquote>
 
           <h3 class="mb-4">His code contributions can be found in such sites as:</h3>
