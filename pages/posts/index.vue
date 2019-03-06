@@ -8,7 +8,7 @@
             b-card-text {{ post.summary }}
             <nuxt-link :to="{ name: 'posts-slug', params: { slug: post.slug } }" class="text-uppercase btn btn-primary">Read more</nuxt-link>
       footer.text-center.small
-        p CMS facilities provided by <a href="https://buttercms.com">ButterCMS</a>
+        p CMS facilities provided by <a href="https://buttercms.com" target="_blank">ButterCMS</a>
 </template>
 
 <script>
