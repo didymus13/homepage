@@ -8,6 +8,10 @@
     <b-collapse id="nav_collapse" is-nav>
 
       <b-navbar-nav>
+        <b-nav-item :to="{ name: 'posts' }">Blog posts</b-nav-item>
+
+        <b-nav-text>Sample apps:</b-nav-text>
+
         <b-nav-item-dropdown text="Kids">
           <b-dropdown-item :to="{name: 'kids-math-addition'}">Math Practice</b-dropdown-item>
         </b-nav-item-dropdown>
@@ -19,7 +23,9 @@
           <b-dropdown-item :to="{name: 'rpgs-mythic'}">Mythic RPG FATE</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item href="/hobbies/on-the-paint-table">On the paint table</b-nav-item>
+        <b-nav-item-dropdown text="Hobbies">
+          <b-dropdown-item href="/hobbies/on-the-paint-table">On the paint table</b-dropdown-item>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
 
 
