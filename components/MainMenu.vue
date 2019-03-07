@@ -3,7 +3,7 @@
 
     <b-navbar-toggle target="nav_collapse"/>
 
-    <b-navbar-brand href="/">StephaneDoiron.com</b-navbar-brand>
+    <b-navbar-brand :to="{ name: 'index' }">StephaneDoiron.com</b-navbar-brand>
 
     <b-collapse id="nav_collapse" is-nav>
 
