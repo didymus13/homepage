@@ -14,7 +14,9 @@
 <script>
 import _ from 'lodash'
 export default {
-  async asyncData({ app }) {
+  async asyncData({ app, payload }) {
+    if (payload) return { posts: payload.data , meta: payload.meta }
+    
     const { data } = await app.$butter.post.list({page: 1})
     return {
       posts: data.data,

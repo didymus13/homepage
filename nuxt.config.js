@@ -1,6 +1,7 @@
 const pkg = require('./package')
 require('dotenv').config()
 import butterCMS from 'buttercms'
+import _ from 'lodash'
 
 module.exports = {
   mode: 'universal',
@@ -12,7 +13,6 @@ module.exports = {
     TRELLO_TOKEN: process.env.TRELLO_TOKEN,
     TRELLO_LISTS_PAINTING: process.env.TRELLO_LISTS_PAINTING,
     TRELLO_LISTS_FINISHED: process.env.TRELLO_LISTS_FINISHED,
-    CMS_API: process.env.CMS_API,
     CMS_TOKEN: process.env.CMS_TOKEN
   },
 
@@ -83,13 +83,18 @@ module.exports = {
     */
   },
 
-  // generate: {
-  //   async routes() {
-  //     const butter = butterCMS(process.env.CMS_TOKEN)
-  //     const { data } = await butter.post.list()
-  //     return data.data.map((post) => {
-  //       return { route: "/post/${post.slug}", payload: post }
-  //     })
-  //   }
-  // }
+  generate: {
+    async routes() {
+      const butter = butterCMS(process.env.CMS_TOKEN)
+      const { data } = await butter.post.list()
+      const postsIndex = [{ route: 'posts', payload: data }]
+      const posts = data.data.map((post) => {
+        return {
+           route: `/posts/${post.slug}`,
+           payload: post
+        }
+      })
+      return _.concat(postsIndex, posts)
+    }
+  }
 }

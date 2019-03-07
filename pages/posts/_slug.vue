@@ -11,7 +11,7 @@
 <script>
 import _ from 'lodash'
 export default {
-  async asyncData({params, app, payload}) {
+  async asyncData({ params, app, payload }) {
     if (payload) return { post: payload }
     const { data } = await app.$butter.post.retrieve(params.slug)
     return {
