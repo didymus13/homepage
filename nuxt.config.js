@@ -1,17 +1,21 @@
 const pkg = require('./package')
 require('dotenv').config()
+import butterCMS from 'buttercms'
+import _ from 'lodash'
 
 module.exports = {
   mode: 'universal',
 
+  // This is necessary for Netlify SSR
   env: {
     TRELLO_API: process.env.TRELLO_API,
     TRELLO_KEY: process.env.TRELLO_KEY,
     TRELLO_TOKEN: process.env.TRELLO_TOKEN,
     TRELLO_LISTS_PAINTING: process.env.TRELLO_LISTS_PAINTING,
-    TRELLO_LISTS_FINISHED: process.env.TRELLO_LISTS_FINISHED
+    TRELLO_LISTS_FINISHED: process.env.TRELLO_LISTS_FINISHED,
+    CMS_TOKEN: process.env.CMS_TOKEN
   },
-  
+
   /*
   ** Headers of the page
   */
@@ -44,6 +48,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/butterCMS.js'
   ],
 
   /*
@@ -76,5 +81,20 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+  },
+
+  generate: {
+    async routes() {
+      const butter = butterCMS(process.env.CMS_TOKEN)
+      const { data } = await butter.post.list()
+      const postsIndex = [{ route: 'posts', payload: data }]
+      const posts = data.data.map((post) => {
+        return {
+           route: `/posts/${post.slug}`,
+           payload: post
+        }
+      })
+      return _.concat(postsIndex, posts)
+    }
   }
 }
