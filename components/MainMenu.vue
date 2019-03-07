@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="md" type="dark" variant="dark">
+  <b-navbar toggleable="md" type="light" variant="light">
 
     <b-navbar-toggle target="nav_collapse"/>
 
@@ -8,11 +8,11 @@
     <b-collapse id="nav_collapse" is-nav>
 
       <b-navbar-nav>
-        <b-nav-item :to="{ name: 'posts' }">Blog posts</b-nav-item>
+        <b-nav-item :to="{ name: 'posts' }">Shop Talk</b-nav-item>
 
-        <b-nav-text>Sample apps:</b-nav-text>
+        <b-nav-text>Web apps:</b-nav-text>
 
-        <b-nav-item-dropdown text="Kids">
+        <b-nav-item-dropdown text="For kids">
           <b-dropdown-item :to="{name: 'kids-math-addition'}">Math Practice</b-dropdown-item>
         </b-nav-item-dropdown>
 
