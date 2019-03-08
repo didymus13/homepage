@@ -87,14 +87,17 @@ module.exports = {
     async routes() {
       const butter = butterCMS(process.env.CMS_TOKEN)
       const { data } = await butter.post.list()
-      const postsIndex = [{ route: 'posts', payload: data }]
+      const pages = [
+        { route: '/posts', payload: data },
+        { route: '/', payload: _.take(data.data, 3) }
+      ]
       const posts = data.data.map((post) => {
         return {
            route: `/posts/${post.slug}`,
            payload: post
         }
       })
-      return _.concat(postsIndex, posts)
+      return _.concat(pages, posts)
     }
   }
 }
