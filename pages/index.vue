@@ -1,4 +1,4 @@
-<template>
+<template lang="pug">
   <div>
     <b-jumbotron fluid text-variant="light" class="bg-image full" style="background-image: url('/homepage-bg.jpg')">
       <span slot="header">Stéphane Doiron</span>
@@ -43,19 +43,35 @@
               </b-card>
             </b-col>
           </b-row>
-          <!-- <h3>What's going on?</h3> -->
         </b-col>
       </b-row>
     </b-container>
+
+    <!-- Recent posts  -->
+    b-jumbotron(fluid header="Recent Shop Talk")
+      b-row
+        b-col(v-for="post in posts" :key="post.id")
+          post-card(:post="post")
   </div>
 </template>
 
 <script>
-import MainMenu from '~/components/MainMenu.vue'
+import MainMenu from '@/components/MainMenu.vue'
+import PostCard from '@/components/PostCard'
 export default {
   components: {
-    MainMenu
+    MainMenu,
+    PostCard
   },
+
+  async asyncData({app, payload}) {
+    if (payload) return { posts: payload }
+    let res = await app.$butter.post.list({ page: 1, page_size: 3 })
+    return {
+      posts: res.data.data
+    }
+  },
+
   head: {
     title: 'StephaneDoiron.com',
     meta: [

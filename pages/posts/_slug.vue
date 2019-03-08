@@ -4,8 +4,6 @@
     b-container
       h1 {{ post.title }}
       div(v-html="post.body")
-      footer.text-center.small
-        p CMS facilities provided by <a href="https://buttercms.com" target="_blank">ButterCMS</a>
 </template>
 
 <script>
