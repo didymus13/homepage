@@ -6,6 +6,11 @@
       <p>Do you want to get in touch with me? <strong>That's great news!</strong> All you need to do is just fill out
         the form below and I'll get in touch as soon as possible.</p>
 
+      <b-alert show variant="info">
+        <strong>Quick note:</strong> I am not looking for new freelance work at this time. I'll remove
+        this message when my schedule opens up.
+      </b-alert>
+
       <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
         <b-form-group label="Your name">
           <b-form-input name="name" placeholder="Your name" />
@@ -33,3 +38,16 @@
     </b-container>
   </div>
 </template>
+
+<script>
+  export default {
+    head: {
+      title: 'Contact me!',
+      meta: [
+        { name: 'description', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
+        { type: 'og:title', content: 'Contact me!' },
+        { type: 'og:drescription', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
+      ]
+    }
+  }
+</script>
