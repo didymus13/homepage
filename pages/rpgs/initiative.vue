@@ -20,7 +20,7 @@
           label Combat notes:
           b-form-textarea(v-model="notes" placeholder="Type your notes here" rows="6" max-rows="50")
 
-      b-button.my-4(@click="reset" variant="danger") Reset Combat <span class="fas fa-trash"></span>
+      b-button.my-4(@click="reset" variant="danger") Clear encounter <span class="fas fa-trash"></span>
 </template>
 
 <script>

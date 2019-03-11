@@ -6,12 +6,17 @@
     b-form-group(label="Character" label-cols="3")
       b-input(v-model="char.name" placeholder="Name" @keyup.enter="addChar")
     b-form-group(label-cols="3")
-      b-form-checkbox(v-model="char.isPlayer") Is Player?
+      p-check(v-model="char.isPlayer") Is Player?
     b-button(block @click="addChar" :disabled="!isValid") Add <span class="fas fa-plus-circle"></span>
 </template>
 
 <script>
+import pCheck from 'pretty-checkbox-vue/check'
 export default {
+  components: {
+    pCheck
+  },
+
   data() {
     return {
       char: { name: '', init: '', isPlayer: false }
