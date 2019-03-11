@@ -4,46 +4,33 @@
     b-container
       b-row
         b-col(sm)
-          b-row.pb-4
-            b-col
-              h3 Current round: {{ round }}
-            b-col.col-4
-              b-button(@click="next" block) Next!
+          b-row
+            b-col(xs="12" sm="4")
+              h3 Round: {{ round }}
+            b-col(xs="12")
+              h3 {{ active.name }}
+          b-button(@click="next" block variant="primary")
+            | Next <span class="fas fa-arrow-circle-right"></span>
 
-          //- Player List
-          b-row.py-1(v-for="char,i in chars" :key="i" :class="{'is-current': turn == i, 'is-player': char.isPlayer, 'is-dead': char.isDead}")
-            b-col.col-3
-              span.fas.fa-chevron-right.mr-2(:class="{visible: turn == i, invisible: turn != i}")
-              | {{ char.init }}
-            b-col {{ char.name }}
-            b-col.col-2
-              p-check.p-icon.p-plain(v-model="char.isDead" color="danger-o" toggle title="Dead?")
-                span.icon.fas.fa-skull(slot="extra")
-                span.icon.fas.fa-skull(slot="off-extra")
+          participants(:chars="chars" :turn="turn" @remove="removeChar($event)")
+          new-participant(@add="addChar($event)")
 
-          //- New Participant Form
-          b-row.py-2
-            b-col.col-4
-              b-input(v-model="char.init" type="number" min="1" placeholder="0")
-            b-col
-              b-input(v-model="char.name" placeholder="Name")
-            div.w-100
-            b-col.col-4
-            b-col
-              b-form-checkbox(v-model="char.isPlayer") Is Player?
-            b-col
-              b-button(block @click="addChar") Add
-        b-col(sm)
+        b-col
           label Combat notes:
-          b-form-textarea(v-model="notes" placeholder="Entere your notes here" rows="6")
-      b-button.float-right(@click="reset") Reset Combat
+          b-form-textarea(v-model="notes" placeholder="Type your notes here" rows="6" max-rows="50")
+
+      b-button.my-4(@click="reset" variant="danger") Reset Combat <span class="fas fa-trash"></span>
 </template>
 
 <script>
 import _ from 'lodash'
 import pCheck from 'pretty-checkbox-vue/check'
+import Participants from '@/components/InitiativeTracker/Participants'
+import NewParticipant from '@/components/InitiativeTracker/NewParticipant'
 export default {
   components: {
+    NewParticipant,
+    Participants,
     pCheck
   },
 
@@ -51,7 +38,6 @@ export default {
     return {
       round: 1,
       turn: 0,
-      char: {},
       chars: [],
       notes: ''
     }
@@ -59,7 +45,7 @@ export default {
 
   computed: {
     active() {
-      return this.inOrder[this.turn]
+      return this.chars.length ? this.chars[this.turn] : {}
     }
   },
 
@@ -70,9 +56,8 @@ export default {
       this.turn =  exceeded ? 0 : newTurn
       if (exceeded) this.round = this.round + 1
     },
-    addChar() {
-      this.chars.push({...this.char})
-      this.char = {}
+    addChar(char) {
+      this.chars.push({...char})
       this.reorder()
     },
     removeChar(index) {
@@ -91,22 +76,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.is-current {
-  background-color: whitesmoke
-}
 
-.is-player {
-  color: darkgreen
-}
-
-.is-dead {
-  background-color: lightcoral;
-  color: darkred;
-  text-decoration: line-through;
-}
 
 .bg-image {
-  background-image: url('/initTrackerHero.jpg')
+  background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7)), url('/initTrackerHero.jpg')
 }
 
 .display-3 {
