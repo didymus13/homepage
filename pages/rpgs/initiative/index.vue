@@ -4,13 +4,14 @@
     b-container
       b-row
         b-col(sm)
-          b-row
-            b-col(xs="12" sm="4")
-              h3 Round: {{ round }}
-            b-col(xs="12")
-              h3 {{ active.name }}
-          b-button(@click="next" block variant="primary")
-            | Next <span class="fas fa-arrow-circle-right"></span>
+          div(v-show="chars.length")
+            b-row
+              b-col(xs="12" sm="4")
+                h3 Round: {{ round }}
+              b-col(xs="12")
+                h3 {{ active.name }}
+            b-button(block variant="primary" @click="next")
+              | Next <span class="fas fa-arrow-circle-right"></span>
 
           participants(:chars="chars" :turn="turn" @remove="removeChar($event)")
           new-participant(@add="addChar($event)")

@@ -2,9 +2,9 @@
   div
     h5 Add a new participant:
     b-form-group(label="Init" label-cols="3")
-      b-input(v-model.number="char.init" type="number" min="1" placeholder="0")
+      b-input(v-model.number="char.init" type="number" min="1" placeholder="1" @keyup.enter="addChar")
     b-form-group(label="Character" label-cols="3")
-      b-input(v-model="char.name" placeholder="Name")
+      b-input(v-model="char.name" placeholder="Name" @keyup.enter="addChar")
     b-form-group(label-cols="3")
       b-form-checkbox(v-model="char.isPlayer") Is Player?
     b-button(block @click="addChar" :disabled="!isValid") Add <span class="fas fa-plus-circle"></span>
@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      char: { name: '', init: 1, isPlayer: false }
+      char: { name: '', init: '', isPlayer: false }
     }
   },
 
@@ -26,8 +26,9 @@ export default {
 
   methods: {
     addChar() {
+      if (!this.isValid) return
       this.$emit('add', {...this.char})
-      this.char = { name: '', init: 1, isPlayer: false }
+      this.char = { name: '', init: '', isPlayer: false }
     }
   }
 }
