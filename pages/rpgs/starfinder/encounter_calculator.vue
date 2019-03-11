@@ -73,17 +73,24 @@
             </b-col>
 
             <b-col>
-              <b-button v-show="monsters.length > 0" variant="danger" @click="deleteMonster(i)">
+              <b-button v-show="monsters.length > 1" variant="danger" @click="deleteMonster(i)">
                 <span class="fas fa-fw fa-trash"/>
               </b-button>
             </b-col>
           </b-row>
 
-          <b-button variant="primary" @click="addMonster">Add Monster</b-button>
+          <b-button variant="primary" @click="addMonster">Add monster group</b-button>
         </b-col>
       </b-row>
-    </b-container>
 
+      <h2>Instructions</h2>
+      <ol>
+        <li>To calculate your encounter start by adding the number of players that you have and their levels.</li>
+        <li>Choose your encounter difficulty, this will give you an XP budget with XP remaining.</li>
+        <li>Choose the number of monsters and the CR of those monsters to build your encounter.</li>
+        <li>As you add or remove monsters, you'll be able to gauge the encounter's CR and XP budget remaining.</li>
+      </ol>
+    </b-container>
   </div>
 </template>
 
