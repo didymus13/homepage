@@ -3,44 +3,41 @@
     <b-jumbotron text-variant="white"
                  fluid
                  header="YASEC"
-                 lead="Yet Another Encounter Calculator for Starfinder"/>
-
-
+                 lead="Yet Another Starfinder Encounter Calculator"
+                 class="bg-image"/>
     <b-container>
       <b-row>
         <!-- Player Character Information -->
         <b-col cols="*" md="6">
           <h3>
             Average Player Level: {{ averagePlayerLevel }}
-            <b-button variant="primary" @click="addPlayer">Add player</b-button>
           </h3>
 
-          <div v-for="(player, i) in players" :key="i">
-            <b-row>
-              <b-col>
-                <b-form-group label="# players">
-                  <b-input v-model="player.num" type="number" placeholder="# of players"/>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group label="of level">
-                  <b-input v-model="player.level" type="number" placeholder="level"/>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-button v-show="players.length > 1" variant="danger" @click="deletePlayer(i)">
-                  <span class="fas fa-fw fa-trash"/>
-                </b-button>
-              </b-col>
-            </b-row>
-          </div>
+          <b-row v-for="(player, i) in players" :key="i">
+            <b-col>
+              <b-form-group label="# players">
+                <b-input v-model="player.num" type="number" placeholder="# of players"/>
+              </b-form-group>
+            </b-col>
+            <b-col>
+              <b-form-group label="of level">
+                <b-input v-model="player.level" type="number" placeholder="level"/>
+              </b-form-group>
+            </b-col>
+            <b-col>
+              <b-button v-show="players.length > 1" variant="danger" @click="deletePlayer(i)">
+                <span class="fas fa-fw fa-trash"/>
+              </b-button>
+            </b-col>
+          </b-row>
+          <b-button variant="primary" @click="addPlayer">Add player</b-button>
         </b-col>
 
         <!-- Monster Section -->
         <b-col cols="*" md="6">
-          <h3>Encounter Cr: {{ encounterCR }} XP: {{ totalXp }} Budget: {{ xpBudget }}
-            <b-button variant="primary" @click="addMonster">Add Monster</b-button>
+          <h3>Encounter Cr: {{ encounterCR }}</h3>
 
+          <b-form-group label="Encounter difficulty" label-cols-sm="4">
             <b-form-select v-model="difficulty">
               <option :value="-1">Easy</option>
               <option :value="0">Average</option>
@@ -48,10 +45,17 @@
               <option :value="2">Hard</option>
               <option :value="3">Epic</option>
             </b-form-select>
-          </h3>
+          </b-form-group>
+
+          <b-row>
+            <b-col xs="4">XP Budget: </b-col>
+            <b-col>{{ xpBudget - totalXp }}xp</b-col>
+          </b-row>
+
+          <hr/>
           <!-- Monster Information -->
           <b-row v-for="(monster, i) in monsters" :key="i">
-            <b-col>
+            <b-col xs="12" sm="6">
               <b-form-group label="# of Monsters">
                 <b-form-select v-model="monster.num">
                   <option v-for="(num, i) in [1, 2, 3, 4, 6, 8, 12, 16]" :value="num" :key="i">
@@ -61,18 +65,21 @@
               </b-form-group>
             </b-col>
             <b-col>
-              <b-form-group label="of CR">
+              <b-form-group label="of CR" xs="12" sm="6">
                 <b-form-select v-model="monster.cr">
                   <option v-for="cr in crChart" :value="cr.cr" :key="cr.cr">{{ cr.cr }}</option>
                 </b-form-select>
               </b-form-group>
             </b-col>
+
             <b-col>
               <b-button v-show="monsters.length > 0" variant="danger" @click="deleteMonster(i)">
                 <span class="fas fa-fw fa-trash"/>
               </b-button>
             </b-col>
           </b-row>
+
+          <b-button variant="primary" @click="addMonster">Add Monster</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -168,12 +175,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.jumbotron {
-  background-position: center;
-  background-size: cover;
-  background-image: url('/starfinder-gm.jpg');
+.bg-image {
+  background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7)), url('/starfinder-gm.jpg');
   > .container {
     text-shadow: 1px 1px black;
   }
+}
+.btn.btn-danger {
+  margin-top: 2rem;
 }
 </style>
