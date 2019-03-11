@@ -5,3 +5,8 @@
     text-shadow: 1px 1px black;
   }
 }
+
+.hoverable:hover {
+  background-color: lightgrey;
+  transition: all 0.5s;
+}
