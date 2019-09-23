@@ -3,12 +3,13 @@
     b-jumbotron(header="Shop talk" lead="Random thoughts and musings" fluid class="bg-image" text-variant="light")
     b-container
       b-row
-        b-col(v-for="post in posts" :key="post.id" sm="6" lg="4")
+        b-col(v-for="post in posts" :key="post.sys.id" sm="6" lg="4")
           post-card(:post="post")
 </template>
 
 <script>
 import PostCard from '@/components/PostCard'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export default {
   components: {
@@ -16,12 +17,14 @@ export default {
   },
 
   async asyncData({ app, payload }) {
-    if (payload) return { posts: payload.data , meta: payload.meta }
+    const res = await app.$contentful.getEntries({
+      content_type: 'blogPost',
+      order: '-fields.publishedAt'
+    })
 
-    const { data } = await app.$butter.post.list({page: 1})
     return {
-      posts: data.data,
-      meta: data.meta
+      posts: res.items,
+      meta: res.sys
     }
   }
 }

@@ -2,6 +2,7 @@ const pkg = require('./package')
 require('dotenv').config()
 import butterCMS from 'buttercms'
 import _ from 'lodash'
+const contentful = require("contentful");
 
 module.exports = {
   mode: 'universal',
@@ -86,15 +87,18 @@ module.exports = {
 
   generate: {
     async routes() {
-      const butter = butterCMS(process.env.CMS_TOKEN)
-      const { data } = await butter.post.list()
+      const res = await contentful.getEntries({
+        content_type: 'blogPost'
+      })
+
       const pages = [
-        { route: '/posts', payload: data },
-        { route: '/', payload: _.take(data.data, 3) }
+        { route: '/posts', payload: res.items },
+        { route: '/', payload: _.take(rest.items, 3) }
       ]
-      const posts = data.data.map((post) => {
+
+      const posts = rest.items.map((post) => {
         return {
-           route: `/posts/${post.slug}`,
+           route: `/posts/${post.fields.slug}`,
            payload: post
         }
       })
