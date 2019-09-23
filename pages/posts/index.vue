@@ -9,7 +9,6 @@
 
 <script>
 import PostCard from '@/components/PostCard'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export default {
   components: {
