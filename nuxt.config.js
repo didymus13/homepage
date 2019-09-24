@@ -1,6 +1,5 @@
 const pkg = require('./package')
 require('dotenv').config()
-import butterCMS from 'buttercms'
 import _ from 'lodash'
 const contentful = require("contentful");
 
@@ -14,7 +13,9 @@ module.exports = {
     TRELLO_TOKEN: process.env.TRELLO_TOKEN,
     TRELLO_LISTS_PAINTING: process.env.TRELLO_LISTS_PAINTING,
     TRELLO_LISTS_FINISHED: process.env.TRELLO_LISTS_FINISHED,
-    CMS_TOKEN: process.env.CMS_TOKEN
+    CONTENTFUL_ID: process.env.CONTENTFUL_ID,
+    CONTENTFUL_TOKEN: process.env.CONTENTFUL_TOKEN,
+    CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN
   },
 
   /*
@@ -49,7 +50,6 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/butterCMS.js',
     '@/plugins/contentful'
   ],
 

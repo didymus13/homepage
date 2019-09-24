@@ -16,7 +16,6 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.2",
-    "buttercms": "^1.1.5",
     "contentful": "^7.10.0",
     "cross-env": "^5.2.1",
     "moment": "^2.24.0",
