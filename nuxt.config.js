@@ -87,19 +87,16 @@ module.exports = {
 
   generate: {
     async routes() {
+      // Render blog posts
       const client = contentful.createClient({
         space: process.env.CONTENTFUL_ID,
         accessToken: process.env.CONTENTFUL_TOKEN
       });
+      
       const res = await client.getEntries({
         content_type: 'blogPost',
         order: '-fields.publishedAt'
       })
-
-      const pages = [
-        { route: '/posts', payload: res.items },
-        { route: '/', payload: _.take(res.items, 3) }
-      ]
 
       const posts = res.items.map((post) => {
         return {
@@ -107,7 +104,7 @@ module.exports = {
            payload: post
         }
       })
-      return _.concat(pages, posts)
+      return posts
     }
   }
 }
