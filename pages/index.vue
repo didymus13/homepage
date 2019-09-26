@@ -1,6 +1,7 @@
 <template lang="pug">
   div
     hero(:hero="content.fields.hero")
+
     b-container
       b-row
         // Skills
@@ -61,37 +62,36 @@ export default {
     }
   },
 
-  head: {
-    title: 'StephaneDoiron.com',
-    meta: [
-      {
-        name: 'description',
-        content: 'PHP Developer with 20 years of experience'
-      },
-      {
-        name: 'keywords',
-        content:
-          'developer, development, PHP, code, javascript, vuejs, mysql, database'
-      },
-      {
-        property: 'og:title',
-        content: 'Stephane Doiron: PHP Developer'
-      },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: '//www.stephanedoiron.com' },
-      {
-        property: 'og:image',
-        content: '//www.stephanedoiron.com/homepage-bg.jpg'
-      }
-    ]
-  },
+  head() {
+    return {
+      title: _.get(this.content.fields, 'meta.fields.seoTitle'),
+      meta: [
+        {
+          name: 'description',
+          content: _.get(this.content.fields, 'meta.fields.description'),
+        },
+        {
+          name: 'keywords',
+          content:
+            'developer, development, PHP, code, javascript, vuejs, mysql, database'
+        },
+        {
+          property: 'og:title',
+          content: _.get(this.content.fields, 'meta.fields.seoTitle'),
+        },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: '//www.stephanedoiron.com' },
+        {
+          property: 'og:image',
+          content: _.get(this.content.fields, 'meta.fields.ogImage.fields.file.url')
+        }
+      ]
+    }
+  }
 }
 </script>
 
 <style lang="sass">
-  .bg-image
-    background-position: center
-    background-size: cover
   .full
     min-height: 66.66vh
 </style>
