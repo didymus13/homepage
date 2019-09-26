@@ -1,17 +1,6 @@
 <template lang="pug">
   div
-    b-jumbotron(fluid text-variant="light" class="bg-image full" style="background-image: url('/homepage-bg.jpg')")
-      span(slot="header") Stéphane Doiron
-      span(slot="lead") PHP Backend developer with 2 decades of experience
-      a.text-light(href="https://www.github.com/didymus13")
-        span.fab.fa-fw.fa-github.fa-2x
-      a.text-light(href="https://www.linkedin.com/in/stephane-doiron-88716932/")
-        span.fab.fa-fw.fa-linkedin.fa-2x
-      a.text-light(href="https://twitter.com/sirdidymus")
-        span.fab.fa-fw.fa-twitter.fa-2x
-      a.text-light(href="/contact")
-        span.fas.fa-fw.fa-envelope.fa-2x
-
+    hero(:hero="content.fields.hero")
     b-container
       b-row
         // Skills
@@ -23,10 +12,7 @@
 
         // Blurb
         b-col
-          blockquote.mb-4 Based in Montreal, Canada, and working in web development since 1998, Stéphane Doiron has
-            |  worked with companies of varying scopes and portfolios, from small static page websites to large websites
-            |  with multi-million monthly views. Specialized in backend development and APIs, he helps websites become
-            |  more responsive and adaptable to today’s changing market realities.
+          blockquote.mb-4 {{ content.fields.content }}
 
           h3.mb-4 His code contributions can be found in such sites as:
           b-row.mb-4
@@ -46,12 +32,15 @@
 </template>
 
 <script>
+import _ from 'lodash'
+import Hero from '@/components/hero'
 import MainMenu from '@/components/MainMenu.vue'
 import PostCard from '@/components/PostCard'
 export default {
   components: {
     MainMenu,
-    PostCard
+    PostCard,
+    Hero
   },
 
   async asyncData({app}) {
@@ -62,11 +51,13 @@ export default {
     })
     const skillsReq = app.$contentful.getEntries({ content_type: 'skill', order: '-fields.skillLevel' })
     const portfolioReq = app.$contentful.getEntries({ content_type: 'portfolio', order: 'fields.order' })
-    const [posts, skills, portfolio] = await Promise.all([postsReq, skillsReq, portfolioReq])
+    const contentReq = app.$contentful.getEntries({ content_type: 'staticPage', 'fields.slug': 'homepage' })
+    const [posts, skills, portfolio, content] = await Promise.all([postsReq, skillsReq, portfolioReq, contentReq])
     return {
       posts: posts.items,
       skills: skills.items,
-      portfolio: portfolio.items
+      portfolio: portfolio.items,
+      content: _.first(content.items)
     }
   },
 
