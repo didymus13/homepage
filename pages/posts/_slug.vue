@@ -1,38 +1,47 @@
 <template lang="pug">
   div
-    b-jumbotron(:header="post.title" fluid class="bg-image" text-variant="light" :style="style")
+    b-jumbotron.bg-image(:header="post.fields.title"
+      fluid
+      text-variant="light"
+      :style="`background-image: url('${ post.fields.featuredImage.fields.file.url }')`"
+    )
     b-container
-      h1 {{ post.title }}
-      div(v-html="post.body")
+      div(v-html="$options.filters.render(post.fields.content)")
 </template>
 
 <script>
-import _ from 'lodash'
-export default {
-  async asyncData({ params, app, payload }) {
-    if (payload) return { post: payload }
-    const { data } = await app.$butter.post.retrieve(params.slug)
-    return {
-      post: data.data
-    }
-  },
+import { first } from 'lodash'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
+export default {
   head() {
     return {
-      title: this.post.seo_title,
+      title: this.post.seo_title || this.post.fields.title,
       meta: [
-        { name: 'description', content: this.post.summary },
-        { type: 'og:title', content: this.post.seo_title },
-        { type: 'og:image', content: this.post.featured_image },
-        { type: 'og:description', content: this.post.summary },
+        { name: 'description', content: this.post.fields.meta.fields.description },
+        { type: 'og:title', content: this.post.seo_title || this.post.fields.title },
+        { type: 'og:image', content: this.post.fields.meta.fields.ogImage.fields.file.url },
+        { type: 'og:description', content: this.post.fields.meta.fields.description },
       ]
     }
   },
 
-  computed: {
-    style() {
-      const url = _.replace(this.post.featured_image, 'https://cdn.buttercms.com/', 'https://fs.buttercms.com/resize=width:1920,height:640/')
-      return {'background-image': `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), url(${url})`}
+  async asyncData({ params, app, payload }) {
+    if (payload) return { post: payload }
+    const data = await app.$contentful.getEntries({
+      'fields.slug': params.slug,
+      'content_type': 'blogPost',
+      limit: 1
+    })
+
+    return {
+      post: first(data.items)
+    }
+  },
+
+  filters: {
+    render(richText) {
+      return documentToHtmlString(richText)
     }
   }
 }

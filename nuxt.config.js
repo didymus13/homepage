@@ -1,7 +1,7 @@
 const pkg = require('./package')
 require('dotenv').config()
-import butterCMS from 'buttercms'
 import _ from 'lodash'
+const contentful = require("contentful");
 
 module.exports = {
   mode: 'universal',
@@ -13,7 +13,9 @@ module.exports = {
     TRELLO_TOKEN: process.env.TRELLO_TOKEN,
     TRELLO_LISTS_PAINTING: process.env.TRELLO_LISTS_PAINTING,
     TRELLO_LISTS_FINISHED: process.env.TRELLO_LISTS_FINISHED,
-    CMS_TOKEN: process.env.CMS_TOKEN
+    CONTENTFUL_ID: process.env.CONTENTFUL_ID,
+    CONTENTFUL_TOKEN: process.env.CONTENTFUL_TOKEN,
+    CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN
   },
 
   /*
@@ -48,7 +50,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/butterCMS.js'
+    '@/plugins/contentful'
   ],
 
   /*
@@ -85,19 +87,24 @@ module.exports = {
 
   generate: {
     async routes() {
-      const butter = butterCMS(process.env.CMS_TOKEN)
-      const { data } = await butter.post.list()
-      const pages = [
-        { route: '/posts', payload: data },
-        { route: '/', payload: _.take(data.data, 3) }
-      ]
-      const posts = data.data.map((post) => {
+      // Render blog posts
+      const client = contentful.createClient({
+        space: process.env.CONTENTFUL_ID,
+        accessToken: process.env.CONTENTFUL_TOKEN
+      });
+      
+      const res = await client.getEntries({
+        content_type: 'blogPost',
+        order: '-fields.publishedAt'
+      })
+
+      const posts = res.items.map((post) => {
         return {
-           route: `/posts/${post.slug}`,
+           route: `/posts/${post.fields.slug}`,
            payload: post
         }
       })
-      return _.concat(pages, posts)
+      return posts
     }
   }
 }

@@ -1,140 +1,90 @@
 <template lang="pug">
-  <div>
-    <b-jumbotron fluid text-variant="light" class="bg-image full" style="background-image: url('/homepage-bg.jpg')">
-      <span slot="header">Stéphane Doiron</span>
-      <span slot="lead">PHP Backend developer with 2 decades of experience</span>
-      <a href="https://www.github.com/didymus13" class="text-light">
-        <span class="fab fa-fw fa-github fa-2x"/>
-      </a>
-      <a href="https://www.linkedin.com/in/stephane-doiron-88716932/" class="text-light">
-        <span class="fab fa-fw fa-linkedin fa-2x"/>
-      </a>
-      <a href="https://twitter.com/sirdidymus" class="text-light">
-        <span class="fab fa-fw fa-twitter fa-2x"/>
-      </a>
-      <a href="/contact" class="text-light">
-        <span class="fas fa-fw fa-envelope fa-2x"/>
-      </a>
-    </b-jumbotron>
+  div
+    hero(:hero="content.fields.hero")
 
-    <b-container>
-      <b-row>
-        <!-- Skills -->
-        <b-col cols="12" sm="4" md="3" lg="2">
-          <h3>Skills:</h3>
-          <div v-for="skill in skills" class="mb-2">
-            <b-progress :value="skill.percent" variant="dark" show-progress /> {{ skill.label }}
-          </div>
-        </b-col>
+    b-container
+      b-row
+        // Skills
+        b-col(cols="12" sm="6" lg="4")
+          h3 Skills:
+          div.mb-2(v-for="skill in skills")
+            b-progress(variant="dark" show-progress :value="skill.fields.skillLevel")
+            | {{ skill.fields.name }}
 
-        <!-- Blurb -->
-        <b-col>
-          blockquote.mb-4 Based in Montreal, Canada, and working in web development since 1998, Stéphane Doiron has worked with companies of varying scopes and portfolios, from small static page websites to large websites with multi-million monthly views. Specialized in backend development and APIs, he helps websites become more responsive and adaptable to today’s changing market realities.
+        // Blurb
+        b-col
+          blockquote.mb-4 {{ content.fields.content }}
 
-          <h3 class="mb-4">His code contributions can be found in such sites as:</h3>
-          <b-row class="mb-4">
-            <b-col sm="12" md="6" v-for="item,i in portfolio" :key="i">
-              <b-card :title="item.title" class="mb-4">
-                <p class="card-text">{{ item.content }}</p>
-                <p class="card-text"><strong>Role:</strong> {{ item.role }}</p>
-                <b-button :href="item.url" variant="primary">Check it out!</b-button>
-              </b-card>
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-    </b-container>
+          h3.mb-4 His code contributions can be found in such sites as:
+          b-row.mb-4
+            b-col(v-for="item in portfolio" :key="item.sys.id" sm="12" md="6")
+              b-card.mb-4(:title="item.fields.title")
+                p.card-text {{ item.fields.blurb }}
+                p.card-text
+                  strong Role:
+                    | {{ item.fields.role }}
+                b-button(:href="item.fields.url" variant="primary") Check it out!
 
-    <!-- Recent posts  -->
+    // Recent posts
     b-jumbotron(fluid header="Recent Shop Talk")
       b-row
         b-col(v-for="post in posts" :key="post.id")
           post-card(:post="post")
-  </div>
 </template>
 
 <script>
+import _ from 'lodash'
+import Hero from '@/components/hero'
 import MainMenu from '@/components/MainMenu.vue'
 import PostCard from '@/components/PostCard'
 export default {
   components: {
     MainMenu,
-    PostCard
+    PostCard,
+    Hero
   },
 
-  async asyncData({app, payload}) {
-    if (payload) return { posts: payload }
-    let res = await app.$butter.post.list({ page: 1, page_size: 3 })
+  async asyncData({app}) {
+    const postsReq = app.$contentful.getEntries({
+      content_type: 'blogPost',
+      order: '-fields.publishedAt',
+      limit: 3
+    })
+    const skillsReq = app.$contentful.getEntries({ content_type: 'skill', order: '-fields.skillLevel' })
+    const portfolioReq = app.$contentful.getEntries({ content_type: 'portfolio', order: 'fields.order' })
+    const contentReq = app.$contentful.getEntries({ content_type: 'staticPage', 'fields.slug': 'homepage' })
+    const [posts, skills, portfolio, content] = await Promise.all([postsReq, skillsReq, portfolioReq, contentReq])
     return {
-      posts: res.data.data
+      posts: posts.items,
+      skills: skills.items,
+      portfolio: portfolio.items,
+      content: _.first(content.items)
     }
   },
 
-  head: {
-    title: 'StephaneDoiron.com',
-    meta: [
-      {
-        name: 'description',
-        content: 'PHP Developer with 20 years of experience'
-      },
-      {
-        name: 'keywords',
-        content:
-          'developer, development, PHP, code, javascript, vuejs, mysql, database'
-      },
-      {
-        property: 'og:title',
-        content: 'Stephane Doiron PHP Development'
-      },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: 'https://www.stephanedoiron.com' },
-      {
-        property: 'og:image',
-        content: 'https://www.stephanedoiron.com/homepage-bg.jpg'
-      }
-    ]
-  },
-  data() {
+  head() {
     return {
-      portfolio: [
+      title: _.get(this.content.fields, 'meta.fields.seoTitle'),
+      meta: [
         {
-          title: 'PPN Source',
-          content: 'Distributor of digital content for events for media, organizations or individuals from around the world.',
-          role: 'Lead developer',
-          url: 'https://www.ppnsource.com/'
+          name: 'description',
+          content: _.get(this.content.fields, 'meta.fields.description'),
         },
         {
-          title: 'GetLeadkit.com',
-          content: 'Real Estate Technology & Lead Generation for the Modern Agent.',
-          role: 'Lead backend developer',
-          url: 'https://www.getleadkit.com/'
-        },
-        // {
-        //   title: 'WeFundRaising.com',
-        //   content: 'The revolution in crowd-funding.',
-        //   role: 'Lead developer',
-        //   url: 'http://www.wefundraising.com/'
-        // },
-        {
-          title: 'AskMen.com',
-          content: "Experts in Men's Lifestyle For Over 18 Years.",
-          role: 'Web developer',
-          url: 'https://www.askmen.com/'
+          name: 'keywords',
+          content:
+            'developer, development, PHP, code, javascript, vuejs, mysql, database'
         },
         {
-          title: 'TRC.ca',
-          content: "Truth and Reconciliation commission of Canada",
-          role: 'Web developer',
-          url: 'http://www.trc.ca/'
+          property: 'og:title',
+          content: _.get(this.content.fields, 'meta.fields.seoTitle'),
         },
-      ],
-      skills: [
-        { label: 'API / REST / JSON', percent: 90 },
-        { label: 'PHP / Laravel', percent: 85 },
-        { label: 'MySQL', percent: 85 },
-        { label: 'Git', percent: 85 },
-        { label: 'PostgreSQL', percent: 80 },
-        { label: 'VueJS', percent: 75 }
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: '//www.stephanedoiron.com' },
+        {
+          property: 'og:image',
+          content: _.get(this.content.fields, 'meta.fields.ogImage.fields.file.url')
+        }
       ]
     }
   }
@@ -142,9 +92,6 @@ export default {
 </script>
 
 <style lang="sass">
-  .bg-image
-    background-position: center
-    background-size: cover
   .full
     min-height: 66.66vh
 </style>
