@@ -3,14 +3,14 @@
     b-jumbotron.bg-image(:header="post.fields.title"
       fluid
       text-variant="light"
-      :style="`background-image: url('${ post.fields.hero.fields.file.url }')`"
+      :style="`background-image: url('${ post.fields.featuredImage.fields.file.url }')`"
     )
     b-container
       div(v-html="$options.filters.render(post.fields.content)")
 </template>
 
 <script>
-import _ from 'lodash'
+import { first } from 'lodash'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     })
 
     return {
-      post: _.first(data.items)
+      post: first(data.items)
     }
   },
 

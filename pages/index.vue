@@ -5,7 +5,7 @@
     b-container
       b-row
         // Skills
-        b-col(cols="12" sm="4" md="3" lg="2")
+        b-col(cols="12" sm="6" lg="4")
           h3 Skills:
           div.mb-2(v-for="skill in skills")
             b-progress(variant="dark" show-progress :value="skill.fields.skillLevel")

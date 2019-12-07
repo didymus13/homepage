@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import { get } from 'lodash'
 export default {
   props: {
     post: {
@@ -18,7 +18,7 @@ export default {
 
   methods: {
     headerImage(post) {
-      return post.fields.hero.fields.file.url
+      return get(post, 'fields.featuredImage.fields.file.url') + '?w=640'
     }
   }
 }
