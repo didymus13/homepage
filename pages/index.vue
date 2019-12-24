@@ -4,11 +4,11 @@
 
     v-container.fill-height(fluid)
       v-row
-        v-col(cols="12" md="6" lg="4")
+        v-col(cols="12" md="4" lg="3")
           h3.subtitle-1.font-weight-bold Skills:
           div.mb-2(v-for="skill in skills")
             .overline {{ skill.fields.name }}
-            v-progress-linear(:value="skill.fields.skillLevel" color="grey darken-4")
+            v-progress-linear(:value="skill.fields.skillLevel" color="blue")
 
         v-col
           p {{ content.fields.content }}
@@ -20,8 +20,9 @@
                 v-card-title {{ item.fields.title }}
                 v-card-text {{ item.fields.blurb }}
 
+    v-container.blue.accent-1
       // Recent posts
-      h2 Recent Shop talk
+      h2.headline.white--text Recent Shop talk
       v-row(justify="center")
         v-col(v-for="post in posts" :key="post.id" cols="12" sm="6" md="4")
           post-card.fill-height(:post="post")

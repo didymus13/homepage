@@ -3,7 +3,7 @@
     v-img.white--text.align-end(
       :src="`${post.fields.featuredImage.fields.file.url}?w=640`"
        aspect-ratio="2"
-       gradient="to top, rgba(0,0,0,0.5), rgba(0,0,0,0)"
+       gradient="to top, rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,0)"
     )
       v-card-title {{ post.fields.meta.fields.seoTitle }}
     v-card-text {{ post.fields.meta.fields.description }}
