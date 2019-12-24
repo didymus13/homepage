@@ -2,34 +2,29 @@
   div
     hero(:hero="content.fields.hero")
 
-    b-container
-      b-row
-        // Skills
-        b-col(cols="12" sm="6" lg="4")
-          h3 Skills:
+    v-container.fill-height(fluid)
+      v-row
+        v-col(cols="12" md="6" lg="4")
+          h3.subtitle-1.font-weight-bold Skills:
           div.mb-2(v-for="skill in skills")
-            b-progress(variant="dark" show-progress :value="skill.fields.skillLevel")
-            | {{ skill.fields.name }}
+            .overline {{ skill.fields.name }}
+            v-progress-linear(:value="skill.fields.skillLevel" color="grey darken-4")
 
-        // Blurb
-        b-col
-          blockquote.mb-4 {{ content.fields.content }}
+        v-col
+          p {{ content.fields.content }}
 
-          h3.mb-4 His code contributions can be found in such sites as:
-          b-row.mb-4
-            b-col(v-for="item in portfolio" :key="item.sys.id" sm="12" md="6")
-              b-card.mb-4(:title="item.fields.title")
-                p.card-text {{ item.fields.blurb }}
-                p.card-text
-                  strong Role:
-                    | {{ item.fields.role }}
-                b-button(:href="item.fields.url" variant="primary") Check it out!
+          h3.subtitle-1.font-weight-bold His code contributions can be found in such sites as:
+          v-row
+            v-col(v-for="item in portfolio" :key="item.sys.id" cols="12" sm="6")
+              v-card.fill-height(:href="item.fields.url" hover)
+                v-card-title {{ item.fields.title }}
+                v-card-text {{ item.fields.blurb }}
 
-    // Recent posts
-    b-jumbotron(fluid header="Recent Shop Talk")
-      b-row
-        b-col(v-for="post in posts" :key="post.id")
-          post-card(:post="post")
+      // Recent posts
+      h2 Recent Shop talk
+      v-row(justify="center")
+        v-col(v-for="post in posts" :key="post.id" cols="12" sm="6" md="4")
+          post-card.fill-height(:post="post")
 </template>
 
 <script>

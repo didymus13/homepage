@@ -1,9 +1,16 @@
 <template lang="pug">
-  div
-    main-menu
-    nuxt
-    footer.text-center.small.p-4
-      | <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  v-app#inspire
+    v-navigation-drawer(v-model="drawer" app)
+      main-menu
+
+    v-app-bar(color="indigo" dark app)
+      v-app-bar-nav-icon(@click.stop="drawer = !drawer")
+      v-toolbar-title Stéphane Doiron.com
+
+    v-content
+      nuxt.body-1
+
+    v-footer(color="indigo" dark app) Made with ❤ by Stephane Doiron.
 </template>
 
 <script>
@@ -12,16 +19,23 @@ export default {
   components: {
     MainMenu
   },
+
   head: {
     link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://use.fontawesome.com/releases/v5.4.2/css/all.css',
-        integrity:
-          'sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns',
-        crossorigin: 'anonymous'
-      }
+      // {
+      //   rel: 'stylesheet',
+      //   href: 'https://use.fontawesome.com/releases/v5.4.2/css/all.css',
+      //   integrity:
+      //     'sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns',
+      //   crossorigin: 'anonymous'
+      // }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' },
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css' }
     ]
-  }
+  },
+
+  data: () => ({
+    drawer: null
+  })
 }
 </script>
