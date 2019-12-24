@@ -1,7 +1,7 @@
-<template lang="html">
-  <span :class="{'text-success': isCorrect, 'text-danger': !isCorrect}">
-    <span :class="{'fa-thumbs-up': isCorrect, 'fa-thumbs-down': !isCorrect}" class="fas fa-10x"/>
-  </span>
+<template lang="pug">
+  span
+    v-icon(v-show="isCorrect" color="green" size="100") mdi-emoticon-happy
+    v-icon(v-show="!isCorrect" color="red" size="100") mdi-emoticon-sad
 </template>
 
 <script>

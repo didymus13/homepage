@@ -1,30 +1,22 @@
-<template>
-  <div>
-    <b-jumbotron text-variant="light"
-                 fluid
-                 header="Math practice"
-                 class="bg-image"
-                 style="background-image: url('/math.jpeg')"/>
+<template lang="pug">
+  div
+    v-parallax(src="/math.jpeg" height="300")
+      h1.display-1 Math practice
 
-    <b-nav justified>
-      <b-nav-item><nuxt-link :to="{name: 'kids-math-addition'}">Addition</nuxt-link></b-nav-item>
-      <b-nav-item><nuxt-link :to="{name: 'kids-math-subtraction'}">Subtraction</nuxt-link></b-nav-item>
-      <b-nav-item><nuxt-link :to="{name: 'kids-math-multiplication'}">Multiplication</nuxt-link></b-nav-item>
-      <b-nav-item><nuxt-link :to="{name: 'kids-math-division'}">Division</nuxt-link></b-nav-item>
-      <b-nav-item><nuxt-link :to="{name: 'kids-math-config'}">Config</nuxt-link></b-nav-item>
-    </b-nav>
+    v-toolbar
+      v-toolbar-items
+        v-btn(:to="{name: 'kids-math-addition'}" icon)
+          v-icon mdi-plus
+        v-btn(:to="{name: 'kids-math-subtraction'}" icon)
+          v-icon mdi-minus
+        v-btn(:to="{name: 'kids-math-multiplication'}" icon)
+          v-icon mdi-close
+        v-btn(:to="{name: 'kids-math-division'}" icon)
+          v-icon mdi-slash-forward
+      v-spacer
+      v-btn(:to="{name: 'kids-math-config'}" icon)
+        v-icon mdi-settings
 
-    <b-container>
-      <router-view/>
-    </b-container>
-  </div>
+    v-container
+      nuxt-child
 </template>
-
-<style lang="sass" scoped>
-  .bg-image
-    background-position: center
-    background-size: cover
-
-  .display-3
-    text-shadow: 2px 2px 4px black
-</style>

@@ -1,8 +1,6 @@
-<template lang="html">
-  <div>
-    <b-progress :variant="variant" :value="result.correct" :max="result.total" :label="`${percentCorrect}%`"/>
-    {{ result.correct }} / {{ result.total }}
-  </div>
+<template lang="pug">
+  v-progress-linear(:color="variant" :value="percentCorrect" height="20")
+    | {{ result.correct }} / {{ result.total }}
 </template>
 
 <script>
@@ -23,9 +21,9 @@ export default {
       return this.percentCorrect >= 80
     },
     variant() {
-      if (this.isFail) return 'danger'
-      if (this.isPass) return 'warning'
-      if (this.isGreat) return 'success'
+      if (this.isFail) return 'red'
+      if (this.isPass) return 'yellow'
+      if (this.isGreat) return 'green'
     }
   }
 }
