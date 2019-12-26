@@ -13,7 +13,7 @@
         | All you need to do is just fill out the form below and I'll get in
         | touch as soon as possible.
 
-      form(name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true")
+      form(name="contact" method="POST" netlify netlify-recaptcha)
         v-row
           v-col
             v-text-field(label="Your name" name="name" outlined)
@@ -21,7 +21,7 @@
             v-text-field(label="Your e-mail address" name="email" outlined)
         v-textarea(label="How can I help you?" placeholder="Your awesome idea" name="request" rows="10" outlined)
         v-textarea(label="Extra information" placeholder="List websites that you like, similar examples or exta information that might help get the ball rolling" name="extra" rows="5" outlined)
-        div(data-netlify-recaptcha="true")
+        div(netlify-recaptcha)
         v-btn(color="blue" type="submit" dark) Send in your request!
 </template>
 
