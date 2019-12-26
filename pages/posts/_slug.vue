@@ -1,9 +1,11 @@
 <template lang="pug">
   div
-    v-parallax(:src="post.fields.featuredImage.fields.file.url")
-      h1 {{ post.fields.title }}
-
-    v-container
+    b-jumbotron.bg-image(:header="post.fields.title"
+      fluid
+      text-variant="light"
+      :style="`background-image: url('${ post.fields.featuredImage.fields.file.url }')`"
+    )
+    b-container
       div(v-html="$options.filters.render(post.fields.content)")
 </template>
 

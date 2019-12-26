@@ -61,11 +61,13 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
+    'bootstrap-vue/nuxt'
   ],
 
-  buildModules: [
-    '@nuxtjs/vuetify'
-  ],
+  bootstrapVue: {
+    bootstrapCSS: true, // or `css`
+    bootstrapVueCSS: true // or `bvCSS`
+  },
 
   /*
   ** Axios module configuration
@@ -90,7 +92,7 @@ module.exports = {
         space: process.env.CONTENTFUL_ID,
         accessToken: process.env.CONTENTFUL_TOKEN
       });
-
+      
       const res = await client.getEntries({
         content_type: 'blogPost',
         order: '-fields.publishedAt'

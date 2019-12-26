@@ -1,22 +1,42 @@
-<template lang="pug">
-  v-list(dense)
-    v-list-item(v-for="(item, i) in items" :key="i" link :to="item.to")
-      v-list-item-action
-        v-icon {{ item.icon }}
-      v-list-item-content
-        v-list-item-title {{ item.label }}
-</template>
+<template>
+  <b-navbar toggleable="md" type="light" variant="light">
 
-<script>
-export default {
-  data: () => ({
-    items: [
-      { to: '/', label: 'Home', icon: 'mdi-home' },
-      { to: { name: 'posts' }, label: 'Shop talk', icon: 'mdi-post' },
-      { to: { name: 'kids-math-addition' }, label: 'Math practice for kids', icon: 'mdi-school' },
-      { to: { name: 'rpgs-dnd-encounter_calculator'}, label: '5e encounter calculator', icon: 'mdi-auto-fix' },
-      { to: { name: 'contact' }, label: 'Contact me', icon: 'mdi-email' }
-    ]
-  })
-}
-</script>
+    <b-navbar-toggle target="nav_collapse"/>
+
+    <b-navbar-brand :to="{ name: 'index' }">StephaneDoiron.com</b-navbar-brand>
+
+    <b-collapse id="nav_collapse" is-nav>
+
+      <b-navbar-nav>
+        <b-nav-item :to="{ name: 'posts' }">Shop Talk</b-nav-item>
+
+        <b-nav-text>Web apps:</b-nav-text>
+
+        <b-nav-item-dropdown text="For kids">
+          <b-dropdown-item :to="{name: 'kids-math-addition'}">Math Practice</b-dropdown-item>
+        </b-nav-item-dropdown>
+
+        <b-nav-item-dropdown text="RPGs">
+          <b-dropdown-item :to="{name: 'rpgs-dnd-encounter_calculator'}">D&D 5th Encounter Calculator</b-dropdown-item>
+          <b-dropdown-item :to="{name: 'rpgs-starfinder-encounter_calculator'}">Starfinder Encounter Calculator</b-dropdown-item>
+          <b-dropdown-item :to="{name: 'rpgs-initiative'}">Initiative tracker</b-dropdown-item>
+          <b-dropdown-item :to="{name: 'rpgs-mythic'}">Mythic RPG FATE</b-dropdown-item>
+        </b-nav-item-dropdown>
+
+        <b-nav-item-dropdown text="Hobbies">
+          <b-dropdown-item href="/hobbies/on-the-paint-table">On the paint table</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+
+
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item href="https://www.github.com/didymus13"><span class="fab fa-fw fa-github"/></b-nav-item>
+        <b-nav-item href="https://www.linkedin.com/in/stephane-doiron-88716932/"><span class="fab fa-fw fa-linkedin"/></b-nav-item>
+        <b-nav-item href="https://twitter.com/sirdidymus"><span class="fab fa-fw fa-twitter"/></b-nav-item>
+        <b-nav-item href="/contact"><span class="fas fa-fw fa-envelope"/></b-nav-item>
+      </b-navbar-nav>
+
+    </b-collapse>
+  </b-navbar>
+</template>

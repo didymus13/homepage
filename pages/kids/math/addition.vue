@@ -1,19 +1,26 @@
-<template lang="pug">
-  v-row
-    v-col(cols="12" sm="6")
-      problem(:number-one="problem.number1" :number-two="problem.number2" title="Addition" operation="+" @verify="verify($event)")
-    v-col(cols="12" sm="6")
-      v-card.fill-height
-        v-card-text
-          div(align="center")
-            answer-result(v-show="hasAnswers")
-          div
-            progress-bar(v-show="hasAnswers")
+<template lang="html">
+  <div id="addition">
+    <h1 class="title">Addition</h1>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        {{ problem.number1 }} + {{ problem.number2 }} =
+        <input id="answer"
+               v-model="answer"
+               type="number"
+               name="answer"
+               class="input"
+               @keyup.enter="verify">
+        <b-button variant="primary" @click="verify">Answer</b-button>
+      </div>
+    </div>
+    <div class="clearfix"/>
+    <answer-result v-show="hasAnswers" />
+    <progress-bar v-show="hasAnswers" />
+  </div>
 </template>
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-import Problem from '~/components/MathPractice/Problem'
 import ProgressBar from '~/components/MathPractice/ProgressBar'
 import AnswerResult from '~/components/MathPractice/AnswerResult'
 
@@ -27,9 +34,14 @@ const {
 
 export default {
   components: {
-    Problem,
     ProgressBar,
     AnswerResult
+  },
+
+  data() {
+    return {
+      answer: ''
+    }
   },
 
   computed: {
@@ -63,9 +75,13 @@ export default {
         this.createProblem() // Recursive call
       }
     },
-    verify(answer) {
-      this.checkAnswer({ answer, solution: this.solution })
+    verify() {
+      this.checkAnswer({ answer: this.answer, solution: this.solution })
       this.createProblem()
+      this.resetForm()
+    },
+    resetForm() {
+      this.answer = ''
     }
   }
 }
