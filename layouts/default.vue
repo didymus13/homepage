@@ -3,9 +3,10 @@
     v-navigation-drawer(v-model="drawer" app)
       main-menu
 
-    v-app-bar(color="blue" dark app)
+    v-app-bar(color="grey lighten-2" app)
       v-app-bar-nav-icon(@click.stop="drawer = !drawer")
-      v-toolbar-title Stéphane Doiron.com
+      v-toolbar-title
+        nuxt-link(to="/") Stéphane Doiron.com
       v-spacer
       v-btn(icon href="https://www.github.com/didymus13" target="_blank")
         v-icon mdi-github-circle
@@ -19,7 +20,7 @@
     v-content
       nuxt.body-1
 
-    v-footer(color="blue" dark app)
+    v-footer(color="grey lighten-2" app)
       v-row(align="center" justify="center") Made with ❤ by Stephane Doiron.
 </template>
 
@@ -49,3 +50,10 @@ export default {
   })
 }
 </script>
+
+<style media="screen" lang="scss" scoped>
+.v-toolbar__title > a {
+  text-decoration: none;
+  color: rgba(0,0,0,0.54)
+}
+</style>

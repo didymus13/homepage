@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    hero(:hero="content.fields.hero")
+    hero.large(:hero="content.fields.hero")
 
     v-container
       v-row
@@ -20,10 +20,10 @@
                 v-card-title {{ item.fields.title }}
                 v-card-text {{ item.fields.blurb }}
 
-    v-sheet.blue.accent-1
+    v-sheet.grey.lighten-3(tile)
       v-container
         // Recent posts
-        h2.headline.white--text Recent Shop talk
+        h2.display-1 Recent Shop talk
         v-row(justify="center")
           v-col(v-for="post in posts" :key="post.id" cols="12" sm="6" md="4")
             post-card.fill-height(:post="post")
