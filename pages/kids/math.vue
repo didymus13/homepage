@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     v-parallax(src="/math.jpeg" height="300")
-      h1.display-1 Math practice
+      h1.display-1 Math practice for kids
 
     v-toolbar
       v-toolbar-items

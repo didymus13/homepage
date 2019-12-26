@@ -3,7 +3,7 @@
     v-navigation-drawer(v-model="drawer" app)
       main-menu
 
-    v-app-bar(color="grey lighten-2" app)
+    v-app-bar(color="grey lighten-3" app)
       v-app-bar-nav-icon(@click.stop="drawer = !drawer")
       v-toolbar-title
         nuxt-link(to="/") Stéphane Doiron.com
@@ -12,15 +12,15 @@
         v-icon mdi-github-circle
       v-btn(icon href="https://www.linkedin.com/in/stephane-doiron-88716932/" target="_blank")
         v-icon mdi-linkedin-box
-      v-btn(icon href="https://twitter.com/sirdidymus" target="_blank")
-        v-icon mdi-twitter
+      //- v-btn(icon href="https://twitter.com/sirdidymus" target="_blank")
+      //-   v-icon mdi-twitter
       v-btn(icon :to="{ name: 'contact' }")
         v-icon mdi-email
 
     v-content
       nuxt.body-1
 
-    v-footer(color="grey lighten-2" app)
+    v-footer(color="grey lighten-3" app)
       v-row(align="center" justify="center") Made with ❤ by Stephane Doiron.
 </template>
 
