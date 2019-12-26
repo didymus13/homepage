@@ -19,15 +19,15 @@
       <form name="contact" method="POST" netlify netlify-recaptcha >
         <v-row>
           <v-col>
-            <v-text-field label="Your name" name="name" outlined />
+            <v-text-field id="name" label="Your name" name="name" outlined></v-text-field>
           </v-col>
           <v-col>
-            <v-text-field label="Your e-mail address" name="email" outlined />
+            <v-text-field id="email" label="Your e-mail address" name="email" outlined></v-text-field>
           </v-col>
         </v-row>
 
-        <v-textarea label="How can I help you?" placeholder="Your awesome idea" name="request" rows="10" outlined />
-        <v-textarea label="Extra information" placeholder="List websites that you like, similar examples or exta information that might help get the ball rolling" name="extra" rows="5" outlined />
+        <v-textarea id="request" label="How can I help you?" placeholder="Your awesome idea" name="request" rows="10" outlined></v-textarea>
+        <v-textarea id="extra" label="Extra information" placeholder="List websites that you like, similar examples or exta information that might help get the ball rolling" name="extra" rows="5" outlined></v-textarea>
         <div netlify-recaptcha></div>
         <v-btn color="blue" type="submit" dark> Send in your request! </v-btn>
       </form>
