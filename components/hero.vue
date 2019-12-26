@@ -1,12 +1,7 @@
 <template lang="pug">
-b-jumbotron(
-  fluid
-  :text-variant="hero.fields.variant"
-  class="bg-image full"
-  :style="`background-image: url('${bgImage}')`"
-)
-  span(slot="header") {{ hero.fields.title }}
-  span(slot="lead") {{ hero.fields.subtitle }}
+v-parallax(:src="bgImage")
+  h1.display-4(:class="{ 'headline': $vuetify.breakpoint.xs }") {{ hero.fields.title }}
+  h3.display-1(:class="{ 'subtitle-1': $vuetify.breakpoint.xs }") {{ hero.fields.subtitle }}
   div(v-if="!hero.fields.isMarkdown" v-html="hero.fields.copy")
 </template>
 

@@ -1,9 +1,12 @@
 <template lang="pug">
   div
-    b-jumbotron(header="Shop talk" lead="Random thoughts and musings" fluid class="bg-image" text-variant="light")
-    b-container
-      b-row
-        b-col(v-for="post in posts" :key="post.sys.id" sm="6" lg="4")
+    v-parallax(src="/posts_hero.jpg")
+      h1.display-4(:class="{ 'display-1': $vuetify.breakpoint.xs }") Shop talk
+      h3.display-1(:class="{ 'title': $vuetify.breakpoint.xs }") Random thoughts and musings
+
+    v-container
+      v-row
+        v-col(v-for="post in posts" :key="post.sys.id" cols="12" sm="6" lg="4")
           post-card(:post="post")
 </template>
 
