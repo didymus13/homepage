@@ -14,7 +14,7 @@
               v-col
                 v-text-field(label="PC Level" v-model="player.level" type="number" placeholder="1")
 
-              v-col(cols="4" lg="2")
+              v-col(cols="4" lg="3")
                 v-btn(v-if="i === players.length - 1" color="green" icon dark @click="addPlayer")
                   v-icon mdi-plus
 
@@ -44,7 +44,7 @@
                 v-text-field(label="Number of monsters" v-model="monster.number" type="number" placeholder="1")
               v-col
                 v-text-field(label="Monster XP" v-model="monster.xp" type="number" placeholder="XP")
-              v-col(cols="4" lg="2")
+              v-col(cols="4" lg="3")
                 v-btn(v-if="i === monsters.length - 1" color="green" icon dark @click="addMonster")
                   v-icon mdi-plus
                 v-btn(color="red" icon dark @click="removeMonster(i)")
