@@ -12,9 +12,7 @@
         v-icon mdi-github-circle
       v-btn(icon href="https://www.linkedin.com/in/stephane-doiron-88716932/" target="_blank")
         v-icon mdi-linkedin-box
-      //- v-btn(icon href="https://twitter.com/sirdidymus" target="_blank")
-      //-   v-icon mdi-twitter
-      v-btn(icon :to="{ name: 'contact' }")
+      v-btn(icon href="/contact")
         v-icon mdi-email
 
     v-content
