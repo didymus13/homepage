@@ -19,7 +19,7 @@
     "contentful": "^7.10.0",
     "cross-env": "^5.2.1",
     "moment": "^2.24.0",
-    "nuxt": "^2.9.2",
+    "nuxt": "^2.11.0",
     "pretty-checkbox-vue": "^1.1.9",
     "vue": "^2.6.10",
     "vue-i18n": "^8.14.1",
@@ -28,7 +28,6 @@
   "devDependencies": {
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "node-sass": "^4.12.0",
-    "nodemon": "^1.19.2",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.3.1"
