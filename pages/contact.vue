@@ -40,14 +40,27 @@
 </template>
 
 <script>
-  export default {
-    head: {
-      title: 'Contact me!',
-      meta: [
-        { name: 'description', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
-        { type: 'og:title', content: 'Contact me!' },
-        { type: 'og:drescription', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
-      ]
+import first from 'lodash/first'
+export default {
+  head: {
+    title: 'Contact me!',
+    meta: [
+      { name: 'description', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
+      { type: 'og:title', content: 'Contact me!' },
+      { type: 'og:drescription', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
+    ]
+  },
+
+  async asyncData({ app }) {
+    const res = await app.$contentful.getEntries({
+      content_type: 'staticPage',
+      'fields.slug': 'contact',
+      limit: 1
+    })
+
+    return {
+      page: first(res.items)
     }
   }
+}
 </script>
