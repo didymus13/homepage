@@ -27,44 +27,18 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-import ProgressBar from '~/components/MathPractice/ProgressBar'
-import AnswerResult from '~/components/MathPractice/AnswerResult'
-const _ = require('lodash')
-const {
-  mapState,
-  mapGetters,
-  mapMutations,
-  mapActions
-} = createNamespacedHelpers('math')
+import Addition from './addition'
 
 export default {
-  components: {
-    ProgressBar,
-    AnswerResult
-  },
-
-  data() {
-    return {
-      answer: ''
-    }
-  },
+  extends: Addition,
 
   computed: {
-    ...mapState(['problem', 'config', 'progress']),
-    ...mapGetters(['hasAnswers', 'percentCorrect']),
     solution() {
       return this.problem.number1 * this.problem.number2
     }
   },
 
-  mounted() {
-    this.createProblem()
-  },
-
   methods: {
-    ...mapActions(['checkAnswer']),
-    ...mapMutations(['setProblem']),
     createProblem() {
       this.setProblem({
         number1: this.config.forcedNumber
@@ -72,14 +46,6 @@ export default {
           : _.random(this.config.numberMin, this.config.numberMax),
         number2: _.random(this.config.numberMin, this.config.numberMax)
       })
-    },
-    verify() {
-      this.checkAnswer({ answer: this.answer, solution: this.solution })
-      this.createProblem()
-      this.resetForm()
-    },
-    resetForm() {
-      this.answer = ''
     }
   }
 }
