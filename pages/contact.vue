@@ -1,15 +1,9 @@
 <template lang="html">
   <div class="">
-    <b-jumbotron fluid header="Contact" class="bg-image" :style="{'background-image': 'url(/contact.jpg)'}" text-variant="light"></b-jumbotron>
+    <b-jumbotron fluid :header="page.fields.hero.fields.title" class="bg-image" :style="{'background-image': `url(${ page.fields.hero.fields.image.fields.file.url })`}" :text-variant="page.fields.hero.fields.variant" />
+
     <b-container>
-
-      <p>Do you want to get in touch with me? <strong>That's great news!</strong> All you need to do is just fill out
-        the form below and I'll get in touch as soon as possible.</p>
-
-      <b-alert show variant="info">
-        <strong>Quick note:</strong> I am not looking for new freelance work at this time. I'll remove
-        this message when my schedule opens up.
-      </b-alert>
+      <p>{{ page.fields.content }}</p>
 
       <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
         <b-form-group label="Your name">
@@ -42,13 +36,16 @@
 <script>
 import first from 'lodash/first'
 export default {
-  head: {
-    title: 'Contact me!',
-    meta: [
-      { name: 'description', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
-      { type: 'og:title', content: 'Contact me!' },
-      { type: 'og:drescription', content: "Do you want to get in touch with me? All you need to do is just fill out the this form and I'll get in touch as soon as possible." },
-    ]
+  head() {
+    return {
+      title: this.page.fields.meta.fields.seoTitle,
+      meta: [
+        { name: 'description', content: this.page.fields.meta.fields.drescription },
+        { type: 'og:title', content: this.page.fields.meta.fields.seoTitle },
+        { type: 'og:drescription', content: this.page.fields.meta.fields.drescription },
+        { type: 'og:image', content: this.page.fields.meta.fields.ogImage.fields.file.url }
+      ]
+    }
   },
 
   async asyncData({ app }) {
