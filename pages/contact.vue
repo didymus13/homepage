@@ -1,6 +1,11 @@
 <template lang="html">
   <div class="">
-    <b-jumbotron fluid :header="page.fields.hero.fields.title" class="bg-image" :style="{'background-image': `url(${ page.fields.hero.fields.image.fields.file.url })`}" :text-variant="page.fields.hero.fields.variant" />
+    <b-jumbotron fluid
+      :header="page.fields.hero.fields.title"
+      class="bg-image"
+      :style="{'background-image': `url(${ page.fields.hero.fields.image.fields.file.url })`}"
+      :text-variant="page.fields.hero.fields.variant"
+    />
 
     <b-container>
       <p>{{ page.fields.content }}</p>
