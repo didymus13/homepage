@@ -1,35 +1,12 @@
-<template lang="html">
-  <div id="subtraction">
-    <h1 class="title">Subtraction</h1>
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        {{ problem.number1 }} - {{ problem.number2 }} =
-      </div>
-      <div class="field-body">
-        <div class="field has-addons">
-          <p class="control">
-            <input id="answer"
-                   v-model="answer"
-                   type="number"
-                   name="answer"
-                   class="input"
-                   @keyup.enter="verify">
-          </p>
-          <p class="control">
-            <b-button variant="primary" @click="verify">Answer</b-button>
-          </p>
-        </div>
-      </div>
-    </div>
-    <answer-result v-show="hasAnswers" />
-    <progress-bar v-show="hasAnswers" />
-  </div>
-</template>
-
 <script>
 import Addition from './addition'
 export default {
   extends: Addition,
+
+  props: {
+    title: { type: String, default: 'Subtraction' },
+    operator: { type: String, default: '-' }
+  },
 
   computed: {
     solution() {

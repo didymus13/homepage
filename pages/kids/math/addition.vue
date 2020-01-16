@@ -1,9 +1,9 @@
 <template lang="html">
   <div id="addition">
-    <h1 class="title">Addition</h1>
+    <h1 class="title">{{ title }}</h1>
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        {{ problem.number1 }} + {{ problem.number2 }} =
+        {{ problem.number1 }} {{ operator }} {{ problem.number2 }} =
         <input id="answer"
                v-model="answer"
                type="number"
@@ -36,6 +36,11 @@ export default {
   components: {
     ProgressBar,
     AnswerResult
+  },
+
+  props: {
+    title: { type: String, default: 'Addition' },
+    operator: { type: String, default: '+' }
   },
 
   data() {
