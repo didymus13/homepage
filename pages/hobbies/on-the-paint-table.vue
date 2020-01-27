@@ -11,7 +11,7 @@
           h3 Finished this year
           ol
             li(v-for="item,id in finishedThisYear" :key="id") {{ item.dateLastActivity | toDateString }} : {{ item.name }}
-      h5 That's this?
+      h5 What's this?
       p
         | I am heavily invested in the miniature painting hobby. So much so that I easily lose track of what I'm working
         | on and more importantly, finished. I set up a
