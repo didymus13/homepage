@@ -18,6 +18,7 @@
 
         <b-nav-item-dropdown text="RPGs">
           <b-dropdown-item :to="{name: 'rpgs-dnd-encounter_calculator'}">D&D 5th Encounter Calculator</b-dropdown-item>
+          <b-dropdown-item :to="{name: 'rpgs-pf2-encounter-calculator'}">Pathfinder 2nd Encounter Calculator</b-dropdown-item>
           <b-dropdown-item :to="{name: 'rpgs-starfinder-encounter_calculator'}">Starfinder Encounter Calculator</b-dropdown-item>
           <b-dropdown-item :to="{name: 'rpgs-initiative'}">Initiative tracker</b-dropdown-item>
           <b-dropdown-item :to="{name: 'rpgs-mythic'}">Mythic RPG FATE</b-dropdown-item>
