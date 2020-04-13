@@ -25,9 +25,9 @@ export default {
       title: this.title,
       meta: [
         { name: 'description', content: this.description },
-        { type: 'og:title', content: this.title },
-        { type: 'og:description', content: this.description },
-        { type: 'og:image', content: this.imageUrl }
+        { property: 'og:title', content: this.title },
+        { property: 'og:description', content: this.description },
+        { property: 'og:image', content: this.imageUrl }
       ]
     }
   },
@@ -35,7 +35,7 @@ export default {
   data: () => ({
     title: 'Yet another Pathfinder 2nd edition encounter calculator',
     imageUrl: 'https://cdn.paizo.com/image/content/Secondary/PZO2201-Sample.jpg',
-    description: 'An encounter calculator for Pathfinder 2nd edition. Use it to help build or modify encounters.'
+    description: 'Yet another encounter calculator for Pathfinder 2nd edition. Use it to build or modify encounters.'
   }),
 
   computed: {
