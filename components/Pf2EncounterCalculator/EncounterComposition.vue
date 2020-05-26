@@ -15,7 +15,7 @@
         input.form-control(v-model="group.name" placeholder="Name")
       .col.form-group
         label Level
-        input.form-control(v-model.number="group.level" type="number" placeholder="Relative level" min="-4" max="4")
+        input.form-control(v-model.number="group.level" type="number")
       .col
         .row.form-group.form-check
           input.form-check-input(v-model="group.isWeak" type="checkbox")
