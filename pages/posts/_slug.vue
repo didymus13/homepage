@@ -3,7 +3,7 @@
     b-jumbotron.bg-image(:header="post.fields.title"
       fluid
       text-variant="light"
-      :style="`background-image: url('${ post.fields.featuredImage.fields.file.url }')`"
+      :style="`background-image: url('${ post.fields.featuredImage.fields.file.url }?w=1920&h=600&fit=fill')`"
     )
     b-container
       div(v-html="$options.filters.render(post.fields.content)")
@@ -18,10 +18,22 @@ export default {
     return {
       title: this.post.seo_title || this.post.fields.title,
       meta: [
-        { name: 'description', content: this.post.fields.meta.fields.description },
-        { type: 'og:title', content: this.post.seo_title || this.post.fields.title },
-        { type: 'og:image', content: this.post.fields.meta.fields.ogImage.fields.file.url },
-        { type: 'og:description', content: this.post.fields.meta.fields.description },
+        {
+          name: 'description',
+          content: this.post.fields.meta.fields.description
+        },
+        {
+          type: 'og:title',
+          content: this.post.seo_title || this.post.fields.title
+        },
+        {
+          type: 'og:image',
+          content: this.post.fields.meta.fields.ogImage.fields.file.url
+        },
+        {
+          type: 'og:description',
+          content: this.post.fields.meta.fields.description
+        }
       ]
     }
   },
@@ -30,7 +42,7 @@ export default {
     if (payload) return { post: payload }
     const data = await app.$contentful.getEntries({
       'fields.slug': params.slug,
-      'content_type': 'blogPost',
+      content_type: 'blogPost',
       limit: 1
     })
 

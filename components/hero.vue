@@ -19,7 +19,10 @@ export default {
 
   computed: {
     bgImage() {
-      return _.get(this.hero, 'fields.image.fields.file.url')
+      return (
+        _.get(this.hero, 'fields.image.fields.file.url') +
+        '?w=1920&h=600&fit=fill'
+      )
     }
   }
 }

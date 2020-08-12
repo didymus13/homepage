@@ -18,7 +18,10 @@ export default {
 
   methods: {
     headerImage(post) {
-      return get(post, 'fields.featuredImage.fields.file.url') + '?w=640'
+      return (
+        get(post, 'fields.featuredImage.fields.file.url') +
+        '?w=510&h=255&fit=fill'
+      )
     }
   }
 }
