@@ -32,7 +32,7 @@ export default {
   methods: {
     addChar() {
       if (!this.isValid) return
-      this.$emit('add', {...this.char})
+      this.$emit('add', { ...this.char })
       this.char = { name: '', init: '', isPlayer: false }
     }
   }
