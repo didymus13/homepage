@@ -9,12 +9,6 @@
           | {{ char.init }}
         b-col {{ char.name }}
         b-col
-          p-check.p-icon.p-plain(v-model="char.isDead" color="danger-o" toggle title="Dead?")
-            span.icon.fas.fa-skull(slot="extra")
-            //- span.icon.fas.fa-skull(slot="off-extra")
-            span.icon.fa-stack.fa-2x(slot="off-extra")
-              span.fas.fa-stack-1x.fa-skull
-              span.fas.fa-stack-1x.fa-ban(style="color: Tomato")
           b-button(variant="link" @click="$emit('remove', i)")
             span.fas.fa-trash
         b-col(cols="1")
