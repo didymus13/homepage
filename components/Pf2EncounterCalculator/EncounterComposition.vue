@@ -1,7 +1,8 @@
 <template lang="pug">
   div 
     .form-group
-      label Encounter type
+      label 
+        h3 Encounter type
       select.form-control(v-model="selected")
         option(v-for="(budget, label) in budgets" :key="label" :value="budget") {{ label }}
     encounter-progress.mb-3(:progress="totalHazards" :max="totalBudget")
@@ -17,13 +18,13 @@
         label Level
         input.form-control(v-model.number="group.level" type="number")
       .col
-        .row.form-group.form-check
+        .row.form-group.form-check(title="-1 level")
           input.form-check-input(v-model="group.isWeak" type="checkbox")
           label.form-check-label Is Weak?
-        .row.form-group.form-check
+        .row.form-group.form-check(title="+1 level")
           input.form-check-input(v-model="group.isElite" type="checkbox")
           label.form-check-label Is Elite?
-        .row.form-group.form-check
+        .row.form-group.form-check(title="Traps or non-monsters are usually simple")
           input.form-check-input(v-model="group.isSimple" type="checkbox")
           label.form-check-label Is Simple?
       .col
@@ -45,7 +46,7 @@ export default {
   },
 
   data: () => ({
-    selected: {},
+    selected: { base: 80, adj: 20 },
     budgets: {
       trivial: { base: 40, adj: 10 },
       low: { base: 60, adj: 15 },
@@ -84,11 +85,15 @@ export default {
 
   methods: {
     calcXp({ num, level, isWeak, isElite, isSimple }) {
+      const row = this.getHazardRow(level, isWeak, isElite)
+      return num * (isSimple ? row.simple : row.complex)
+    },
+
+    getHazardRow(level, isWeak, isElite) {
       if(isWeak) level--
       if(isElite) level++
       const relativeLevel = level - this.averageLevel
-      const row = find(this.hazards, { level: relativeLevel })
-      return num * (isSimple ? row.simple : row.complex)
+      return find(this.hazards, { level: relativeLevel }) || { simple: -1000, complex: -1000 }
     },
 
     handleAdd() {
