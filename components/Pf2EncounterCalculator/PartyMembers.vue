@@ -1,5 +1,9 @@
 <template lang="pug">
-  div Party Average Level: {{ averageLevel }}
+  div 
+    .row 
+      .col 
+        h4 Party Average Level: {{ averageLevel }}
+
     .row.form-group(v-for="(group, i) in value" :key="i")
       .col
         label # Players
