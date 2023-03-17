@@ -44,16 +44,31 @@ export default {
     Hero
   },
 
-  async asyncData({app}) {
+  async asyncData({ app }) {
     const postsReq = app.$contentful.getEntries({
       content_type: 'blogPost',
       order: '-fields.publishedAt',
       limit: 3
     })
-    const skillsReq = app.$contentful.getEntries({ content_type: 'skill', order: '-fields.skillLevel' })
-    const portfolioReq = app.$contentful.getEntries({ content_type: 'portfolio', order: 'fields.order' })
-    const contentReq = app.$contentful.getEntries({ content_type: 'staticPage', 'fields.slug': 'homepage' })
-    const [posts, skills, portfolio, content] = await Promise.all([postsReq, skillsReq, portfolioReq, contentReq])
+    const skillsReq = app.$contentful.getEntries({
+      content_type: 'skill',
+      order: '-fields.skillLevel'
+    })
+    const portfolioReq = app.$contentful.getEntries({
+      content_type: 'portfolio',
+      order: 'fields.order',
+      limit: 4
+    })
+    const contentReq = app.$contentful.getEntries({
+      content_type: 'staticPage',
+      'fields.slug': 'homepage'
+    })
+    const [posts, skills, portfolio, content] = await Promise.all([
+      postsReq,
+      skillsReq,
+      portfolioReq,
+      contentReq
+    ])
     return {
       posts: posts.items,
       skills: skills.items,
@@ -68,7 +83,7 @@ export default {
       meta: [
         {
           name: 'description',
-          content: _.get(this.content.fields, 'meta.fields.description'),
+          content: _.get(this.content.fields, 'meta.fields.description')
         },
         {
           name: 'keywords',
@@ -77,13 +92,16 @@ export default {
         },
         {
           property: 'og:title',
-          content: _.get(this.content.fields, 'meta.fields.seoTitle'),
+          content: _.get(this.content.fields, 'meta.fields.seoTitle')
         },
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: '//www.stephanedoiron.com' },
         {
           property: 'og:image',
-          content: _.get(this.content.fields, 'meta.fields.ogImage.fields.file.url')
+          content: _.get(
+            this.content.fields,
+            'meta.fields.ogImage.fields.file.url'
+          )
         }
       ]
     }
@@ -92,6 +110,6 @@ export default {
 </script>
 
 <style lang="sass">
-  .full
-    min-height: 66.66vh
+.full
+  min-height: 66.66vh
 </style>
