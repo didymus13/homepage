@@ -1,7 +1,7 @@
 const pkg = require('./package')
 require('dotenv').config()
 import _ from 'lodash'
-const contentful = require("contentful");
+const contentful = require('contentful')
 
 module.exports = {
   mode: 'universal',
@@ -15,12 +15,13 @@ module.exports = {
     TRELLO_LISTS_FINISHED: process.env.TRELLO_LISTS_FINISHED,
     CONTENTFUL_ID: process.env.CONTENTFUL_ID,
     CONTENTFUL_TOKEN: process.env.CONTENTFUL_TOKEN,
-    CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN
+    CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN,
+    GTM_ID: process.env.GTM_ID
   },
 
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: pkg.name,
     meta: [
@@ -28,42 +29,40 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
 
   /*
-  ** Global CSS
-  */
-  css: [
-    'pretty-checkbox/dist/pretty-checkbox.min.css',
-    '@/assets/main.scss'
-  ],
+   ** Global CSS
+   */
+  css: ['pretty-checkbox/dist/pretty-checkbox.min.css', '@/assets/main.scss'],
 
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    '@/plugins/contentful',
-    '@/plugins/vuex-persist'
-  ],
+   ** Plugins to load before mounting the App
+   */
+  plugins: ['@/plugins/contentful', '@/plugins/vuex-persist'],
 
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     ['@nuxtjs/dotenv', { systemvars: true }],
+    '@nuxtjs/gtm',
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt'
   ],
+
+  gtm: {
+    id: process.env.GTM_ID,
+    enabled: true
+  },
 
   bootstrapVue: {
     bootstrapCSS: true, // or `css`
@@ -71,19 +70,19 @@ module.exports = {
   },
 
   /*
-  ** Axios module configuration
-  */
+   ** Axios module configuration
+   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** You can extend webpack config here
-    */
+     ** You can extend webpack config here
+     */
   },
 
   generate: {
@@ -92,17 +91,17 @@ module.exports = {
       const client = contentful.createClient({
         space: process.env.CONTENTFUL_ID,
         accessToken: process.env.CONTENTFUL_TOKEN
-      });
-      
+      })
+
       const res = await client.getEntries({
         content_type: 'blogPost',
         order: '-fields.publishedAt'
       })
 
-      const posts = res.items.map((post) => {
+      const posts = res.items.map(post => {
         return {
-           route: `/posts/${post.fields.slug}`,
-           payload: post
+          route: `/posts/${post.fields.slug}`,
+          payload: post
         }
       })
       return posts
